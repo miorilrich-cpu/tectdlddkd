@@ -39,13 +39,11 @@
     <style>
         body {
             font-family: 'Kanit', sans-serif;
-            /* โทนพาสเทลละมุนตา Soft Pastel Gradient Background */
             background: radial-gradient(circle at 10% 20%, #fff0f3 0%, #faf5f7 50%, #fde8ed 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Floating background shapes */
         .bubble {
             position: fixed;
             border-radius: 50%;
@@ -60,7 +58,6 @@
             50% { transform: translateY(-20px) scale(1.05); }
         }
 
-        /* Cute Patterned Washi Tape - Pastel Soft Pink */
         .washi-tape {
             position: absolute;
             height: 24px;
@@ -97,7 +94,6 @@
             transform: rotate(22deg);
         }
 
-        /* Interactive Polaroid Frame */
         .polaroid {
             background: #ffffff;
             padding: 12px 12px 26px 12px;
@@ -112,7 +108,6 @@
             box-shadow: 0 16px 35px -8px rgba(244, 114, 182, 0.22);
         }
 
-        /* Claymorphism Main Container - Soft Tone */
         .clay-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
@@ -120,7 +115,6 @@
             box-shadow: 0 20px 45px -15px rgba(251, 207, 217, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.9);
         }
 
-        /* Interactive Shimmer Button */
         .btn-shimmer {
             position: relative;
             overflow: hidden;
@@ -157,7 +151,16 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* Custom Scrollbar - Soft Pastel */
+        /* Pulse Highlight for Edit Buttons */
+        .edit-pulse-btn {
+            animation: editBtnGlow 2s infinite;
+        }
+
+        @keyframes editBtnGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(244, 114, 182, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(244, 114, 182, 0); }
+        }
+
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -196,7 +199,7 @@
             <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
         </audio>
 
-        <!-- Admin Shortcut Toggle -->
+        <!-- Admin Control Modal Toggle -->
         <button onclick="playCuteSound(); toggleAdminPanel()" class="ml-1 bg-rose-50 hover:bg-rose-100 text-rose-400 px-3 py-1.5 rounded-full text-xs font-semibold transition border border-rose-200 flex items-center gap-1.5 shadow-xs">
             <i class="fas fa-cog text-rose-300 text-[10px]"></i> หลังบ้าน
         </button>
@@ -207,12 +210,19 @@
 
         <!-- PAGE 1: HOME PAGE VIEW -->
         <div id="homePageView" class="page-view space-y-7">
-            <!-- 1. Banner Section (1122*495 ratio block) -->
+            
+            <!-- 1. Banner Section (มีปุ่มแก้ไขเฉพาะจุดที่มุมบนขวาของแบนเนอร์) -->
             <section class="relative w-full group">
                 <div class="washi-tape washi-top-right"></div>
                 <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur border border-rose-200 text-rose-400 px-3 py-1 rounded-full text-[10px] font-bold shadow-sm flex items-center gap-1 transform -rotate-3 group-hover:rotate-0 transition">
                     <i class="fas fa-image text-rose-300"></i> Banner 1122x495
                 </div>
+
+                <!-- [ปุ่มแก้ไขรูปแบนเนอร์ - มุมขวาบนแบนเนอร์] -->
+                <button onclick="openQuickEdit('banner')" title="แก้ไขรูปแบนเนอร์" class="edit-pulse-btn absolute top-3 right-3 z-30 bg-rose-400 hover:bg-rose-500 text-white p-2 rounded-full shadow-lg transition transform hover:scale-110 border-2 border-white flex items-center gap-1 text-[11px] font-bold px-3">
+                    <i class="fas fa-camera text-xs"></i> <span>เปลี่ยนแบนเนอร์</span>
+                </button>
+
                 <div class="relative w-full overflow-hidden rounded-3xl shadow-sm border-2 border-rose-100 aspect-[1122/495] bg-rose-50/50">
                     <img id="mainBannerImg" src="https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+1122*495+(miori+shop)" alt="Banner 1122*495" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" onerror="this.src='https://placehold.co/1122x495/ffe4e6/ffffff?text=Banner+Demo+1122x495'">
                 </div>
@@ -220,10 +230,15 @@
 
             <!-- 2. Profile & Details Section -->
             <section class="flex flex-col sm:flex-row items-center sm:items-start gap-6 py-1 relative">
-                <!-- Left: Polaroid Logo Frame -->
+                <!-- Left: Polaroid Logo Frame (มีปุ่มแก้ไขรูปโลโก้ติดข้างรูป) -->
                 <div class="relative flex-shrink-0">
                     <div class="washi-tape washi-top-left"></div>
-                    <div class="polaroid rounded-2xl transform -rotate-3 hover:rotate-0">
+                    <div class="polaroid rounded-2xl transform -rotate-3 hover:rotate-0 relative">
+                        <!-- [ปุ่มแก้ไขรูปโลโก้ - ลอยข้างรูปโลโก้] -->
+                        <button onclick="openQuickEdit('logo')" title="เปลี่ยนรูปโลโก้" class="edit-pulse-btn absolute -top-2 -right-2 z-30 bg-rose-400 hover:bg-rose-500 text-white w-7 h-7 rounded-full shadow-md transition transform hover:scale-110 border-2 border-white flex items-center justify-center">
+                            <i class="fas fa-pencil text-[10px]"></i>
+                        </button>
+
                         <div class="w-24 h-24 sm:w-28 sm:h-28 bg-rose-50 rounded-xl border border-rose-100 overflow-hidden flex items-center justify-center relative group">
                             <img id="logoImg" src="https://placehold.co/200x200/fbcfe8/ffffff?text=Logo" alt="Shop Logo" class="w-full h-full object-cover group-hover:scale-110 transition">
                         </div>
@@ -233,17 +248,25 @@
                     </div>
                 </div>
 
-                <!-- Right: Title and Description -->
-                <div class="flex-1 text-center sm:text-left space-y-3">
+                <!-- Right: Title and Description (มีปุ่มแก้ไขชื่อร้านและรายละเอียดลอยข้างๆ) -->
+                <div class="flex-1 text-center sm:text-left space-y-3 relative">
                     <div class="flex flex-col sm:flex-row items-center gap-2 justify-center sm:justify-start">
-                        <h1 id="shopTitle" class="font-bold text-2xl sm:text-3xl text-rose-400 tracking-wide">Baby Rich</h1>
+                        <div class="flex items-center gap-2">
+                            <h1 id="shopTitle" class="font-bold text-2xl sm:text-3xl text-rose-400 tracking-wide">Baby Rich</h1>
+                            <!-- [ปุ่มแก้ไขชื่อร้านค้า & รายละเอียด - ข้างๆ ชื่อร้าน] -->
+                            <button onclick="openQuickEdit('info')" title="แก้ไขชื่อร้านและคำบรรยาย" class="edit-pulse-btn bg-rose-100 hover:bg-rose-200 text-rose-500 w-7 h-7 rounded-full transition shadow-xs flex items-center justify-center border border-rose-200 shrink-0">
+                                <i class="fas fa-pen text-[11px]"></i>
+                            </button>
+                        </div>
                         <span class="bg-gradient-to-r from-rose-300 to-pink-300 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full font-kanit shadow-xs flex items-center gap-1">
                             <i class="fas fa-check-circle text-[9px]"></i> Verified Shop
                         </span>
                     </div>
+                    
                     <p id="shopDesc" class="text-xs sm:text-sm text-gray-500 leading-relaxed font-light">
                         ยินดีต้อนรับสู่ miori shop ศูนย์รวมสินค้าลิขสิทธิ์แท้ น่ารัก สดใส บริการด้วยใจ ตอบไว ส่งของทุกวันค่ะ สอบถามขอดูรูปเพิ่มเติมได้เลยน้า
                     </p>
+
                     <div class="flex flex-wrap justify-center sm:justify-start gap-2 text-[11px] pt-1">
                         <span class="bg-white/90 text-rose-400 border border-rose-200 px-3 py-1 rounded-full shadow-xs flex items-center gap-1 font-medium">
                             <i class="fas fa-shield-halved text-rose-300"></i> ชำระเงินปลอดภัย 100%
@@ -424,7 +447,36 @@
         &copy; 2026 miori shop - Baby Rich. All rights reserved.
     </footer>
 
-    <!-- MODAL: ADMIN CONTROL PANEL -->
+    <!-- MODAL POPUP: QUICK INLINE EDIT (แก้ไขจุดนั้นๆ ทันที) -->
+    <div id="quickEditModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-xl border-2 border-rose-100 overflow-hidden transform transition-all animate-fadeIn">
+            <div class="p-4 bg-rose-50 border-b border-rose-100 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i id="quickEditIcon" class="fas fa-edit text-rose-400 text-lg"></i>
+                    <h3 id="quickEditTitle" class="font-bold text-rose-500 text-sm">แก้ไขข้อมูลเฉพาะจุด</h3>
+                </div>
+                <button onclick="closeQuickEdit()" class="w-7 h-7 rounded-full bg-rose-100 text-rose-400 hover:bg-rose-200 flex items-center justify-center transition text-xs">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="p-5 space-y-4">
+                <!-- Inner Form Container Injected by JS -->
+                <div id="quickEditContent" class="space-y-3 text-xs">
+                    <!-- Dynamic Field Controls -->
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2 border-t border-rose-100">
+                    <button onclick="closeQuickEdit()" class="px-4 py-2 text-xs text-gray-400 hover:text-gray-600 font-medium">ยกเลิก</button>
+                    <button id="quickEditSaveBtn" onclick="" class="px-5 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5">
+                        <i class="fas fa-save"></i> บันทึกการเปลี่ยนแปลง
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ADMIN CONTROL PANEL MAIN -->
     <div id="adminModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-xl rounded-3xl shadow-xl border-2 border-rose-100 max-h-[90vh] flex flex-col overflow-hidden">
             <div class="p-4 bg-rose-50 border-b border-rose-100 flex items-center justify-between">
@@ -440,83 +492,48 @@
             <div class="p-5 overflow-y-auto space-y-5">
                 <div class="flex border-b border-rose-100 gap-4 text-xs font-bold">
                     <button id="tabConfigBtn" onclick="switchAdminTab('config')" class="pb-2 text-rose-400 border-b-2 border-rose-300 font-bold">
-                        <i class="fas fa-edit mr-1"></i> ตั้งค่าแยกตามจุด (Per Field)
+                        <i class="fas fa-edit mr-1"></i> รายการตั้งค่าร้านค้า
                     </button>
                     <button id="tabReviewsBtn" onclick="switchAdminTab('reviews')" class="pb-2 text-gray-400 font-bold">
                         <i class="fas fa-comments mr-1"></i> จัดการรีวิว
                     </button>
                 </div>
 
-                <!-- Tab 1: Configuration (แก้ไขเป็นจุดๆ พาสเทล) -->
+                <!-- Tab 1: Configuration Overview -->
                 <div id="adminTabConfig" class="space-y-4 text-xs">
-                    <div class="bg-rose-50/60 p-2.5 rounded-xl border border-rose-100 text-[11px] text-rose-400 flex items-center gap-2">
-                        <i class="fas fa-info-circle text-rose-300 text-sm"></i>
-                        <span>แอดมินสามารถกด <b>"บันทึก"</b> ในจุดที่ต้องการแก้ไขเฉพาะรายการได้ทันทีค่ะ</span>
+                    <div class="bg-rose-50/60 p-3 rounded-xl border border-rose-100 text-xs text-rose-400 flex items-center gap-2">
+                        <i class="fas fa-lightbulb text-rose-300 text-base shrink-0"></i>
+                        <span>เคล็ดลับ: คุณสามารถกดปุ่ม <b><i class="fas fa-pencil"></i> รูปดินสอ / กล้อง</b> บนหน้าเว็บจริงเพื่อแก้ไขจุดนั้นๆ ได้ทันทีค่ะ!</span>
                     </div>
 
-                    <!-- 1. ชื่อร้านค้า -->
-                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 shadow-xs space-y-2 hover:border-rose-200 transition">
-                        <label class="block font-bold text-gray-600 flex items-center gap-1.5">
-                            <i class="fas fa-store text-rose-300"></i> 1. ชื่อร้านค้า (Shop Title)
-                        </label>
-                        <div class="flex flex-col sm:flex-row gap-2">
-                            <input type="text" id="adminShopTitle" class="flex-1 px-3 py-2 rounded-xl border border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
-                            <button onclick="saveSingleConfig('title')" class="px-4 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 shrink-0">
-                                <i class="fas fa-save"></i> บันทึกชื่อร้าน
-                            </button>
-                        </div>
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 space-y-2">
+                        <label class="block font-bold text-gray-600">1. ชื่อร้านค้า</label>
+                        <input type="text" id="adminShopTitle" class="w-full px-3 py-2 rounded-xl border border-rose-100 text-xs">
+                        <button onclick="saveSingleConfig('title')" class="px-3 py-1.5 bg-rose-300 text-white font-bold rounded-lg text-xs hover:bg-rose-400">บันทึกชื่อร้าน</button>
                     </div>
 
-                    <!-- 2. รายละเอียดร้านค้า -->
-                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 shadow-xs space-y-2 hover:border-rose-200 transition">
-                        <label class="block font-bold text-gray-600 flex items-center gap-1.5">
-                            <i class="fas fa-align-left text-rose-300"></i> 2. รายละเอียดร้านค้า (Description)
-                        </label>
-                        <textarea id="adminShopDesc" rows="2" class="w-full px-3 py-2 rounded-xl border border-rose-100 focus:outline-none focus:border-rose-300 text-xs"></textarea>
-                        <div class="flex justify-end">
-                            <button onclick="saveSingleConfig('desc')" class="px-4 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
-                                <i class="fas fa-save"></i> บันทึกรายละเอียด
-                            </button>
-                        </div>
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 space-y-2">
+                        <label class="block font-bold text-gray-600">2. รายละเอียดร้านค้า</label>
+                        <textarea id="adminShopDesc" rows="2" class="w-full px-3 py-2 rounded-xl border border-rose-100 text-xs"></textarea>
+                        <button onclick="saveSingleConfig('desc')" class="px-3 py-1.5 bg-rose-300 text-white font-bold rounded-lg text-xs hover:bg-rose-400">บันทึกรายละเอียด</button>
                     </div>
 
-                    <!-- 3. URL โลโก้ -->
-                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 shadow-xs space-y-2 hover:border-rose-200 transition">
-                        <label class="block font-bold text-gray-600 flex items-center gap-1.5">
-                            <i class="fas fa-image text-rose-300"></i> 3. URL โลโก้ (Logo Image URL)
-                        </label>
-                        <div class="flex flex-col sm:flex-row gap-2">
-                            <input type="text" id="adminLogoUrl" class="flex-1 px-3 py-2 rounded-xl border border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
-                            <button onclick="saveSingleConfig('logo')" class="px-4 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 shrink-0">
-                                <i class="fas fa-save"></i> บันทึกโลโก้
-                            </button>
-                        </div>
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 space-y-2">
+                        <label class="block font-bold text-gray-600">3. URL รูปโลโก้</label>
+                        <input type="text" id="adminLogoUrl" class="w-full px-3 py-2 rounded-xl border border-rose-100 text-xs">
+                        <button onclick="saveSingleConfig('logo')" class="px-3 py-1.5 bg-rose-300 text-white font-bold rounded-lg text-xs hover:bg-rose-400">บันทึกโลโก้</button>
                     </div>
 
-                    <!-- 4. URL แบนเนอร์ -->
-                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 shadow-xs space-y-2 hover:border-rose-200 transition">
-                        <label class="block font-bold text-gray-600 flex items-center gap-1.5">
-                            <i class="fas fa-panorama text-rose-300"></i> 4. URL แบนเนอร์ (1122*495 Banner URL)
-                        </label>
-                        <div class="flex flex-col sm:flex-row gap-2">
-                            <input type="text" id="adminBannerUrl" class="flex-1 px-3 py-2 rounded-xl border border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
-                            <button onclick="saveSingleConfig('banner')" class="px-4 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 shrink-0">
-                                <i class="fas fa-save"></i> บันทึกแบนเนอร์
-                            </button>
-                        </div>
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 space-y-2">
+                        <label class="block font-bold text-gray-600">4. URL รูปแบนเนอร์ (1122*495)</label>
+                        <input type="text" id="adminBannerUrl" class="w-full px-3 py-2 rounded-xl border border-rose-100 text-xs">
+                        <button onclick="saveSingleConfig('banner')" class="px-3 py-1.5 bg-rose-300 text-white font-bold rounded-lg text-xs hover:bg-rose-400">บันทึกแบนเนอร์</button>
                     </div>
 
-                    <!-- 5. URL เพลง BGM -->
-                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 shadow-xs space-y-2 hover:border-rose-200 transition">
-                        <label class="block font-bold text-gray-600 flex items-center gap-1.5">
-                            <i class="fas fa-music text-rose-300"></i> 5. URL เพลงพื้นหลัง (BGM MP3 Link)
-                        </label>
-                        <div class="flex flex-col sm:flex-row gap-2">
-                            <input type="text" id="adminMusicUrl" class="flex-1 px-3 py-2 rounded-xl border border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
-                            <button onclick="saveSingleConfig('music')" class="px-4 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 shrink-0">
-                                <i class="fas fa-save"></i> บันทึกเพลง
-                            </button>
-                        </div>
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 space-y-2">
+                        <label class="block font-bold text-gray-600">5. URL เพลง BGM (MP3)</label>
+                        <input type="text" id="adminMusicUrl" class="w-full px-3 py-2 rounded-xl border border-rose-100 text-xs">
+                        <button onclick="saveSingleConfig('music')" class="px-3 py-1.5 bg-rose-300 text-white font-bold rounded-lg text-xs hover:bg-rose-400">บันทึกเพลง</button>
                     </div>
                 </div>
 
@@ -533,15 +550,14 @@
 
     <!-- JavaScript Logic -->
     <script>
-    // Web Audio Synthesizer for Cute Sound Effect
     function playCuteSound() {
         try {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
-            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1); // A5
+            osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1);
             gain.gain.setValueAtTime(0.15, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
             osc.connect(gain);
@@ -551,7 +567,6 @@
         } catch (e) {}
     }
 
-    // Initial Data Storage
     let initialReviews = [
         { id: 1, name: "คุณเปียโน", score: 5, comment: "ได้รับของแล้วค่าน่ารักมากกก แพ็คมาอย่างดีไม่มีรอยบุบเลย แม่ค้าบริการดี ตอบแชทไวสุดๆ", approved: true, hidden: false, date: "2026-11-01" },
         { id: 2, name: "คุณเนย", score: 5, comment: "ร้านนี้เครดิตดีจริงค่ะ ส่งของไว สินค้าตรงปก 100% ไว้อุดหนุนอีกแน่นอนน้า", approved: true, hidden: false, date: "2026-11-03" },
@@ -606,6 +621,110 @@
         document.getElementById('adminLogoUrl').value = shopConfig.logo;
         document.getElementById('adminBannerUrl').value = shopConfig.banner;
         document.getElementById('adminMusicUrl').value = shopConfig.music;
+    }
+
+    // INLINE QUICK EDIT FUNCTION (กดปุ่มจุดไหน แก้ตรงจุดนั้นทันที)
+    let currentEditField = '';
+
+    function openQuickEdit(fieldType) {
+        playCuteSound();
+        currentEditField = fieldType;
+        const modal = document.getElementById('quickEditModal');
+        const titleElem = document.getElementById('quickEditTitle');
+        const contentElem = document.getElementById('quickEditContent');
+        const saveBtn = document.getElementById('quickEditSaveBtn');
+
+        if (fieldType === 'banner') {
+            titleElem.textContent = "เปลี่ยนรูปภาพแบนเนอร์ (Banner 1122*495)";
+            contentElem.innerHTML = `
+                <div>
+                    <label class="block font-bold text-gray-600 mb-1">ใส่ URL รูปภาพแบนเนอร์ใหม่:</label>
+                    <input type="text" id="inlineInputBanner" value="${escapeHtml(shopConfig.banner)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
+                </div>
+                <div class="mt-2 text-[10px] text-gray-400">* แนะนำขนาด 1122 x 495 px</div>
+            `;
+            saveBtn.setAttribute('onclick', "saveInlineEdit('banner')");
+        } else if (fieldType === 'logo') {
+            titleElem.textContent = "เปลี่ยนรูปโลโก้ร้านค้า (Logo)";
+            contentElem.innerHTML = `
+                <div>
+                    <label class="block font-bold text-gray-600 mb-1">ใส่ URL รูปโลโก้ใหม่:</label>
+                    <input type="text" id="inlineInputLogo" value="${escapeHtml(shopConfig.logo)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
+                </div>
+            `;
+            saveBtn.setAttribute('onclick', "saveInlineEdit('logo')");
+        } else if (fieldType === 'info') {
+            titleElem.textContent = "แก้ไขชื่อร้านและคำบรรยาย";
+            contentElem.innerHTML = `
+                <div class="space-y-3">
+                    <div>
+                        <label class="block font-bold text-gray-600 mb-1">ชื่อร้านค้า (Shop Title):</label>
+                        <input type="text" id="inlineInputTitle" value="${escapeHtml(shopConfig.title)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-600 mb-1">รายละเอียดร้านค้า (Description):</label>
+                        <textarea id="inlineInputDesc" rows="3" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs">${escapeHtml(shopConfig.desc)}</textarea>
+                    </div>
+                </div>
+            `;
+            saveBtn.setAttribute('onclick', "saveInlineEdit('info')");
+        }
+
+        modal.classList.remove('hidden');
+    }
+
+    function closeQuickEdit() {
+        document.getElementById('quickEditModal').classList.add('hidden');
+    }
+
+    function saveInlineEdit(fieldType) {
+        playCuteSound();
+        if (fieldType === 'banner') {
+            const val = document.getElementById('inlineInputBanner').value.trim();
+            if (val) shopConfig.banner = val;
+            showToast("อัปเดตรูปแบนเนอร์เรียบร้อยแล้วค่ะ");
+        } else if (fieldType === 'logo') {
+            const val = document.getElementById('inlineInputLogo').value.trim();
+            if (val) shopConfig.logo = val;
+            showToast("อัปเดตรูปโลโก้เรียบร้อยแล้วค่ะ");
+        } else if (fieldType === 'info') {
+            const titleVal = document.getElementById('inlineInputTitle').value.trim();
+            const descVal = document.getElementById('inlineInputDesc').value.trim();
+            if (titleVal) shopConfig.title = titleVal;
+            if (descVal) shopConfig.desc = descVal;
+            showToast("อัปเดตข้อมูลร้านค้าเรียบร้อยแล้วค่ะ");
+        }
+
+        localStorage.setItem('miori_config', JSON.stringify(shopConfig));
+        applyConfigToUI();
+        closeQuickEdit();
+    }
+
+    // Save Single Field Config From Main Admin Panel
+    function saveSingleConfig(field) {
+        playCuteSound();
+        let fieldName = "";
+
+        if (field === 'title') {
+            shopConfig.title = document.getElementById('adminShopTitle').value.trim() || shopConfig.title;
+            fieldName = "ชื่อร้านค้า";
+        } else if (field === 'desc') {
+            shopConfig.desc = document.getElementById('adminShopDesc').value.trim() || shopConfig.desc;
+            fieldName = "รายละเอียดร้านค้า";
+        } else if (field === 'logo') {
+            shopConfig.logo = document.getElementById('adminLogoUrl').value.trim() || shopConfig.logo;
+            fieldName = "โลโก้ร้านค้า";
+        } else if (field === 'banner') {
+            shopConfig.banner = document.getElementById('adminBannerUrl').value.trim() || shopConfig.banner;
+            fieldName = "แบนเนอร์ร้านค้า";
+        } else if (field === 'music') {
+            shopConfig.music = document.getElementById('adminMusicUrl').value.trim() || shopConfig.music;
+            fieldName = "เพลง BGM";
+        }
+
+        localStorage.setItem('miori_config', JSON.stringify(shopConfig));
+        applyConfigToUI();
+        showToast(`บันทึก ${fieldName} เรียบร้อยแล้วค่ะ`);
     }
 
     let isPlaying = false;
@@ -751,7 +870,7 @@
             renderAdminReviewsList();
         }
     }
-<!-- ... existing code ... baseline per-field save code ... -->
+
     function renderAdminReviewsList() {
         const container = document.getElementById('adminReviewsList');
         container.innerHTML = '';
