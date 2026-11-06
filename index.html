@@ -393,14 +393,15 @@
         <!-- PAGE 2: CHECK CREDIT FULL PAGE VIEW -->
         <div id="creditPageView" class="page-view hidden space-y-6">
             <div class="flex items-center justify-between border-b-2 border-rose-100 pb-4">
-                <button onclick="playCuteSound(); switchPage('home')" class="px-4 py-2 bg-transparent hover:bg-rose-50/40 text-rose-400 font-bold text-xs rounded-full transition flex items-center gap-2 border-2 border-rose-100 shadow-xs hover:scale-105">
+                <button onclick="playCuteSound(); switchPage('home')" class="px-4 py-2 bg-white/80 hover:bg-rose-50 text-rose-400 font-bold text-xs rounded-full transition flex items-center gap-2 border-2 border-rose-200 shadow-sm hover:scale-105">
                     <i class="fas fa-arrow-left text-[10px]"></i> ย้อนกลับหน้าหลัก
                 </button>
             </div>
 
-            <div class="text-center py-2.5 bg-transparent rounded-2xl border border-rose-200/60 shadow-xs">
-                <span class="font-bold text-base text-rose-400 tracking-wide flex items-center justify-center gap-2">
-                    <i class="fas fa-star text-rose-300 text-xs"></i> Check Credit Review Board <i class="fas fa-star text-rose-300 text-xs"></i>
+            <!-- เติมกรอบพื้นหลังสีขาวชัดเจนให้กับหัวข้อ Check Credit ตามที่คุณสั่ง -->
+            <div class="text-center py-3 bg-white/95 backdrop-blur-md rounded-2xl border-2 border-rose-200 shadow-sm">
+                <span class="font-bold text-base text-rose-500 tracking-wide flex items-center justify-center gap-2">
+                    <i class="fas fa-star text-rose-400 text-xs"></i> Check Credit Review Board <i class="fas fa-star text-rose-400 text-xs"></i>
                 </span>
             </div>
 
@@ -411,24 +412,24 @@
                     <i class="fas fa-camera text-xs"></i> <span>เปลี่ยนแบนเนอร์หน้ารีวิว</span>
                 </button>
 
-                <div class="relative w-full rounded-3xl overflow-hidden shadow-xs border-2 border-rose-100 aspect-[1122/495] bg-rose-50/20">
+                <div class="relative w-full rounded-3xl overflow-hidden shadow-md border-2 border-rose-200 aspect-[1122/495] bg-white/80">
                     <img id="creditBannerImg" src="https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+Check+Credit+1122*495" alt="Credit Banner 1122*495" class="w-full h-full object-cover">
                 </div>
             </section>
 
-            <div class="bg-transparent border-2 border-rose-100/80 rounded-3xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs relative overflow-hidden">
+            <div class="bg-white/90 backdrop-blur-md border-2 border-rose-200 rounded-3xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm relative overflow-hidden">
                 <div class="text-center sm:text-left">
                     <div class="flex items-center justify-center sm:justify-start space-x-2">
-                        <span id="avgRatingScore" class="text-3xl font-bold text-rose-400 drop-shadow-xs">5.0</span>
-                        <div class="flex text-amber-300 text-base space-x-0.5" id="starRatingIcons">
+                        <span id="avgRatingScore" class="text-3xl font-bold text-rose-500 drop-shadow-xs">5.0</span>
+                        <div class="flex text-amber-400 text-base space-x-0.5" id="starRatingIcons">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                     <p class="text-xs text-gray-500 mt-1">
-                        คะแนนเฉลี่ยความพึงพอใจ (<span id="totalReviewsCount" class="font-bold text-rose-400">0</span> รีวิวจากลูกค้าจริง)
+                        คะแนนเฉลี่ยความพึงพอใจ (<span id="totalReviewsCount" class="font-bold text-rose-500">0</span> รีวิวจากลูกค้าจริง)
                     </p>
                 </div>
-                <button onclick="playCuteSound(); toggleReviewForm()" class="btn-shimmer w-full sm:w-auto px-5 py-2.5 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold text-xs sm:text-sm rounded-full shadow-xs transition flex items-center justify-center gap-2 border border-white/60">
+                <button onclick="playCuteSound(); toggleReviewForm()" class="btn-shimmer w-full sm:w-auto px-5 py-2.5 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold text-xs sm:text-sm rounded-full shadow-md transition flex items-center justify-center gap-2 border border-white/80">
                     <i class="fas fa-pen"></i> เขียนรีวิวร้านค้า
                 </button>
             </div>
@@ -436,8 +437,8 @@
             <!-- Reviews List Area พร้อมทำแถบเลื่อน (Scrollbar) เมื่อมีรีวิวเยอะ -->
             <div class="space-y-4 pt-2">
                 <h3 class="font-bold text-gray-700 text-base flex items-center justify-between">
-                    <span class="flex items-center gap-2"><i class="fas fa-comments text-rose-300"></i> รีวิวจากลูกค้าทั้งหมด</span>
-                    <span class="text-xs text-rose-300 font-normal">อัปเดตล่าสุดเรียลไทม์</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-comments text-rose-400"></i> รีวิวจากลูกค้าทั้งหมด</span>
+                    <span class="text-xs text-rose-400 font-normal">อัปเดตล่าสุดเรียลไทม์</span>
                 </h3>
                 <div id="reviewsList" class="space-y-3 max-h-[460px] overflow-y-auto pr-1">
                     <!-- Dynamic Reviews Items Injected with Admin Controls inside Cards -->
@@ -1029,7 +1030,7 @@
             let starsHtml = '';
             const fullStars = Math.floor(avg);
             for (let i = 0; i < 5; i++) {
-                if (i < fullStars) starsHtml += '<i class="fas fa-star text-amber-300 drop-shadow-xs"></i>';
+                if (i < fullStars) starsHtml += '<i class="fas fa-star text-amber-400 drop-shadow-xs"></i>';
                 else starsHtml += '<i class="far fa-star text-amber-200"></i>';
             }
             document.getElementById('starRatingIcons').innerHTML = starsHtml;
@@ -1040,7 +1041,7 @@
 
         if (displayReviews.length === 0) {
             listContainer.innerHTML = `
-                <div class="text-center py-8 text-gray-400 bg-white/50 backdrop-blur-xs rounded-3xl border border-rose-100">
+                <div class="text-center py-8 text-gray-400 bg-white/90 backdrop-blur-md rounded-3xl border-2 border-rose-200 shadow-sm">
                     <i class="far fa-comments text-3xl mb-2 text-rose-300"></i>
                     <p class="text-xs">ยังไม่มีความคิดเห็นในขณะนี้ เป็นคนแรกที่รีวิวสิคะ!</p>
                 </div>
@@ -1051,12 +1052,13 @@
         displayReviews.forEach(rev => {
             let starsHtml = '';
             for (let i = 0; i < 5; i++) {
-                if (i < rev.score) starsHtml += '<i class="fas fa-star text-amber-300 text-xs"></i>';
+                if (i < rev.score) starsHtml += '<i class="fas fa-star text-amber-400 text-xs"></i>';
                 else starsHtml += '<i class="far fa-star text-amber-200 text-xs"></i>';
             }
 
             const item = document.createElement('div');
-            item.className = `bg-transparent border-2 ${!rev.approved ? 'border-amber-300 bg-amber-50/20' : rev.hidden ? 'border-gray-200 bg-gray-50/20 opacity-60' : 'border-rose-100/80'} p-4 rounded-3xl shadow-none transition hover:shadow-sm relative group`;
+            // เติมกรอบพื้นหลังสีขาวชัดเจนให้กับการ์ดรีวิวของลูกค้าแต่ละอันตามที่คุณสั่ง
+            item.className = `bg-white/95 backdrop-blur-md border-2 ${!rev.approved ? 'border-amber-400 bg-amber-50/50' : rev.hidden ? 'border-gray-300 bg-gray-50/50 opacity-60' : 'border-rose-200'} p-4 rounded-3xl shadow-sm transition hover:shadow-md relative group`;
             
             let adminControlsHtml = '';
             if (isAdminLoggedIn) {
