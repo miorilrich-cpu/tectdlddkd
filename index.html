@@ -136,11 +136,11 @@
             box-shadow: 0 20px 40px -8px rgba(244, 114, 182, 0.3);
         }
 
-        /* ลบพื้นหลังออกทั้งหมด เหลือแค่กรอบ (Border) และความโปร่งใสแบบกระจก เพื่อให้เห็นหัวใจโปรยด้านหลังชัดเจน */
+        /* ลบพื้นหลังสีขาวออกทั้งหมด เหลือแค่กรอบ (Border) 100% โปร่งใส มองทะลุเห็นหัวใจโปรยด้านหลังชัดเจน */
         .clay-card {
-            background: transparent !important;
-            backdrop-filter: blur(2px);
-            border: 2px solid rgba(255, 255, 255, 0.6);
+            background: none !important;
+            backdrop-filter: none;
+            border: 2px solid rgba(255, 255, 255, 0.75);
             box-shadow: none;
         }
 
@@ -332,14 +332,14 @@
 
             <!-- 4. Twin Display Cards -->
             <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="relative bg-white/50 backdrop-blur-xs p-4 rounded-3xl border-2 border-rose-100/80 shadow-xs hover:shadow-sm transition duration-300 group hover:-translate-y-1">
+                <div class="relative bg-transparent p-4 rounded-3xl border-2 border-rose-100/80 shadow-none transition duration-300 group hover:-translate-y-1">
                     <!-- [ปุ่มแก้ไขการ์ดที่ 1 - แสดงเฉพาะ Admin] -->
                     <button id="btnEditCard1" onclick="openQuickEdit('card1')" title="แก้ไขการ์ดส่งด่วน" class="admin-only-btn edit-pulse-btn hidden absolute top-3 right-3 z-30 bg-rose-400 hover:bg-rose-500 text-white w-7 h-7 rounded-full shadow-md transition transform hover:scale-110 border-2 border-white flex items-center justify-center">
                         <i class="fas fa-pen text-[10px]"></i>
                     </button>
 
                     <div class="washi-tape washi-bottom-left"></div>
-                    <div class="h-32 bg-rose-50/50 rounded-2xl mb-3 flex items-center justify-center overflow-hidden border border-rose-100/60 relative">
+                    <div class="h-32 bg-rose-50/20 rounded-2xl mb-3 flex items-center justify-center overflow-hidden border border-rose-100/40 relative">
                         <img id="card1Img" src="https://placehold.co/400x300/fff0f3/f472b6?text=การันตีส่งจริง" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Credit Preview 1">
                         <div class="absolute top-2 left-2 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-rose-400 flex items-center gap-1 border border-rose-100">
                             <i class="fas fa-truck-fast"></i> Fast Delivery
@@ -351,14 +351,14 @@
                     <p id="card1Desc" class="text-[11px] text-gray-600 font-light leading-relaxed">แพ็คกันกระแทกแน่นหนา ได้รับสินค้ารวดเร็วทันใจ</p>
                 </div>
 
-                <div class="relative bg-white/50 backdrop-blur-xs p-4 rounded-3xl border-2 border-rose-100/80 shadow-xs hover:shadow-sm transition duration-300 group hover:-translate-y-1">
+                <div class="relative bg-transparent p-4 rounded-3xl border-2 border-rose-100/80 shadow-none transition duration-300 group hover:-translate-y-1">
                     <!-- [ปุ่มแก้ไขการ์ดที่ 2 - แสดงเฉพาะ Admin] -->
                     <button id="btnEditCard2" onclick="openQuickEdit('card2')" title="แก้ไขการ์ดยอดนิยม" class="admin-only-btn edit-pulse-btn hidden absolute top-3 right-3 z-30 bg-rose-400 hover:bg-rose-500 text-white w-7 h-7 rounded-full shadow-md transition transform hover:scale-110 border-2 border-white flex items-center justify-center">
                         <i class="fas fa-pen text-[10px]"></i>
                     </button>
 
                     <div class="washi-tape washi-top-right"></div>
-                    <div class="h-32 bg-rose-50/50 rounded-2xl mb-3 flex items-center justify-center overflow-hidden border border-rose-100/60 relative">
+                    <div class="h-32 bg-rose-50/20 rounded-2xl mb-3 flex items-center justify-center overflow-hidden border border-rose-100/40 relative">
                         <img id="card2Img" src="https://placehold.co/400x300/fff0f3/f472b6?text=สินค้าแท้+100%25" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Credit Preview 2">
                         <div class="absolute top-2 left-2 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-rose-400 flex items-center gap-1 border border-rose-100">
                             <i class="fas fa-badge-check"></i> 100% Authentic
@@ -393,12 +393,12 @@
         <!-- PAGE 2: CHECK CREDIT FULL PAGE VIEW -->
         <div id="creditPageView" class="page-view hidden space-y-6">
             <div class="flex items-center justify-between border-b-2 border-rose-100 pb-4">
-                <button onclick="playCuteSound(); switchPage('home')" class="px-4 py-2 bg-white/80 hover:bg-rose-50 text-rose-400 font-bold text-xs rounded-full transition flex items-center gap-2 border-2 border-rose-100 shadow-xs hover:scale-105 backdrop-blur-xs">
+                <button onclick="playCuteSound(); switchPage('home')" class="px-4 py-2 bg-transparent hover:bg-rose-50/40 text-rose-400 font-bold text-xs rounded-full transition flex items-center gap-2 border-2 border-rose-100 shadow-xs hover:scale-105">
                     <i class="fas fa-arrow-left text-[10px]"></i> ย้อนกลับหน้าหลัก
                 </button>
             </div>
 
-            <div class="text-center py-2.5 bg-gradient-to-r from-rose-50/60 via-white/50 to-rose-50/60 rounded-2xl border border-rose-200/60 shadow-xs backdrop-blur-xs">
+            <div class="text-center py-2.5 bg-transparent rounded-2xl border border-rose-200/60 shadow-xs">
                 <span class="font-bold text-base text-rose-400 tracking-wide flex items-center justify-center gap-2">
                     <i class="fas fa-star text-rose-300 text-xs"></i> Check Credit Review Board <i class="fas fa-star text-rose-300 text-xs"></i>
                 </span>
@@ -411,12 +411,12 @@
                     <i class="fas fa-camera text-xs"></i> <span>เปลี่ยนแบนเนอร์หน้ารีวิว</span>
                 </button>
 
-                <div class="relative w-full rounded-3xl overflow-hidden shadow-xs border-2 border-rose-100 aspect-[1122/495] bg-rose-50/50">
+                <div class="relative w-full rounded-3xl overflow-hidden shadow-xs border-2 border-rose-100 aspect-[1122/495] bg-rose-50/20">
                     <img id="creditBannerImg" src="https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+Check+Credit+1122*495" alt="Credit Banner 1122*495" class="w-full h-full object-cover">
                 </div>
             </section>
 
-            <div class="bg-white/50 backdrop-blur-xs border-2 border-rose-100/80 rounded-3xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs relative overflow-hidden">
+            <div class="bg-transparent border-2 border-rose-100/80 rounded-3xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs relative overflow-hidden">
                 <div class="text-center sm:text-left">
                     <div class="flex items-center justify-center sm:justify-start space-x-2">
                         <span id="avgRatingScore" class="text-3xl font-bold text-rose-400 drop-shadow-xs">5.0</span>
@@ -1056,7 +1056,7 @@
             }
 
             const item = document.createElement('div');
-            item.className = `bg-white/55 backdrop-blur-xs border-2 ${!rev.approved ? 'border-amber-300 bg-amber-50/50' : rev.hidden ? 'border-gray-200 bg-gray-50/50 opacity-60' : 'border-rose-100/80'} p-4 rounded-3xl shadow-xs transition hover:shadow-sm relative group`;
+            item.className = `bg-transparent border-2 ${!rev.approved ? 'border-amber-300 bg-amber-50/20' : rev.hidden ? 'border-gray-200 bg-gray-50/20 opacity-60' : 'border-rose-100/80'} p-4 rounded-3xl shadow-none transition hover:shadow-sm relative group`;
             
             let adminControlsHtml = '';
             if (isAdminLoggedIn) {
