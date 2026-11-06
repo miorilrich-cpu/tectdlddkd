@@ -183,33 +183,26 @@
     <div class="bubble w-56 h-56 bottom-20 right-5" style="animation-delay: -3s;"></div>
     <div class="bubble w-28 h-28 top-1/2 left-10" style="animation-delay: -5s;"></div>
 
-    <!-- Top Left: Music & BGM Player Control (แยกออกมาอยู่ซ้าย) -->
-    <div class="fixed top-4 left-4 sm:top-6 sm:left-6 z-40 bg-white/90 backdrop-blur-md border-2 border-rose-100 shadow-md rounded-full px-4 py-2 flex items-center space-x-3 text-xs hover:scale-105 transition-all">
-        <button id="musicToggleBtn" onclick="toggleMusic()" class="w-8 h-8 rounded-full bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white flex items-center justify-center transition-all shadow-sm">
+    <!-- Top Right Controls: ปุ่มเปิดเพลงและปุ่มล็อกอินแอดมิน (ทรงกลมคู่กันที่มุมขวาบน) -->
+    <div class="fixed top-4 right-4 sm:top-6 sm:right-6 z-45 flex items-center space-x-2">
+        <!-- Music Player Button (กลม) -->
+        <button id="musicToggleBtn" onclick="toggleMusic()" title="BGM Player" class="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md border-2 border-rose-100 shadow-md text-rose-400 hover:text-rose-500 flex items-center justify-center transition-all hover:scale-105">
             <i id="musicIcon" class="fas fa-music text-xs"></i>
         </button>
-        <div class="hidden sm:block">
-            <p class="font-bold text-rose-400 text-[11px] leading-none flex items-center gap-1">
-                <i class="fas fa-headphones text-[10px]"></i> BGM Player
-            </p>
-            <p id="musicStatus" class="text-[10px] text-gray-400 leading-tight">กดเพื่อเล่นเพลง</p>
-        </div>
 
-        <!-- [ปุ่มแก้ไขเพลง BGM เป็นรูปดินสอพาสเทล - แสดงเฉพาะ Admin] -->
-        <button id="btnEditMusic" onclick="openQuickEdit('music')" title="เปลี่ยนเพลง BGM" class="admin-only-btn edit-pulse-btn hidden bg-rose-100 hover:bg-rose-200 text-rose-500 w-7 h-7 rounded-full transition shadow-xs flex items-center justify-center border border-rose-200">
-            <i class="fas fa-pencil text-[10px]"></i>
+        <!-- [ปุ่มแก้ไขเพลง BGM เป็นรูปดินสอ - แสดงเฉพาะ Admin] -->
+        <button id="btnEditMusic" onclick="openQuickEdit('music')" title="เปลี่ยนเพลง BGM" class="admin-only-btn edit-pulse-btn hidden w-10 h-10 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-500 shadow-md transition-all hover:scale-105 flex items-center justify-center border-2 border-rose-200">
+            <i class="fas fa-pencil text-xs"></i>
+        </button>
+
+        <!-- Admin Auth Button (กลม) -->
+        <button id="adminAuthBtn" onclick="playCuteSound(); handleAdminAuthClick()" title="แอดมิน" class="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md border-2 border-rose-100 shadow-md text-rose-400 hover:text-rose-500 flex items-center justify-center transition-all hover:scale-105">
+            <i id="adminAuthIcon" class="fas fa-lock text-xs"></i>
         </button>
 
         <audio id="bgMusic" loop>
             <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
         </audio>
-    </div>
-
-    <!-- Top Right: Admin Auth Button (แยกออกมาอยู่ขวาเด็ดขาด) -->
-    <div class="fixed top-4 right-4 sm:top-6 sm:right-6 z-40 bg-white/90 backdrop-blur-md border-2 border-rose-100 shadow-md rounded-full px-4 py-2 flex items-center space-x-2 text-xs hover:scale-105 transition-all">
-        <button id="adminAuthBtn" onclick="playCuteSound(); handleAdminAuthClick()" class="bg-rose-50 hover:bg-rose-100 text-rose-400 px-3 py-1.5 rounded-full text-xs font-semibold transition border border-rose-200 flex items-center gap-1.5 shadow-xs">
-            <i id="adminAuthIcon" class="fas fa-lock text-rose-300 text-[10px]"></i> <span id="adminAuthText">แอดมิน</span>
-        </button>
     </div>
 
     <!-- Main Content Container -->
@@ -585,17 +578,17 @@
     }
 
     function updateAdminStateUI() {
-        const btnText = document.getElementById('adminAuthText');
         const btnIcon = document.getElementById('adminAuthIcon');
         const adminBtns = document.querySelectorAll('.admin-only-btn');
+        const adminBtnElem = document.getElementById('adminAuthBtn');
 
         if (isAdminLoggedIn) {
-            btnText.textContent = "ออกจากระบบ";
-            btnIcon.className = "fas fa-unlock text-rose-300 text-[10px]";
+            btnIcon.className = "fas fa-unlock text-xs text-rose-500";
+            adminBtnElem.title = "ออกจากระบบแอดมิน";
             adminBtns.forEach(btn => btn.classList.remove('hidden'));
         } else {
-            btnText.textContent = "แอดมิน";
-            btnIcon.className = "fas fa-lock text-rose-300 text-[10px]";
+            btnIcon.className = "fas fa-lock text-xs text-rose-400";
+            adminBtnElem.title = "แอดมิน";
             adminBtns.forEach(btn => btn.classList.add('hidden'));
         }
     }
@@ -936,16 +929,15 @@
         playCuteSound();
         const audio = document.getElementById('bgMusic');
         const icon = document.getElementById('musicIcon');
-        const status = document.getElementById('musicStatus');
         
         if (isPlaying) {
             audio.pause();
             icon.className = "fas fa-music text-xs";
-            status.textContent = "กดเพื่อเล่นเพลง";
+            showToast("หยุดเพลงชั่วคราว");
         } else {
             audio.play().then(() => {
                 icon.className = "fas fa-pause text-xs";
-                status.textContent = "กำลังเล่นเพลง";
+                showToast("กำลังเล่นเพลง BGM");
             }).catch(err => {
                 console.log("Audio play blocked");
             });
