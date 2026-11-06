@@ -194,6 +194,12 @@
             </p>
             <p id="musicStatus" class="text-[10px] text-gray-400 leading-tight">กดเพื่อเล่นเพลง</p>
         </div>
+
+        <!-- [ปุ่มแก้ไขเพลง BGM - แสดงเฉพาะ Admin] -->
+        <button id="btnEditMusic" onclick="openQuickEdit('music')" title="เปลี่ยนเพลง BGM" class="admin-only-btn edit-pulse-btn hidden bg-rose-100 hover:bg-rose-200 text-rose-500 w-7 h-7 rounded-full transition shadow-xs flex items-center justify-center border border-rose-200">
+            <i class="fas fa-music text-[10px]"></i>
+        </button>
+
         <audio id="bgMusic" loop>
             <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
         </audio>
@@ -301,31 +307,41 @@
             <!-- 4. Twin Display Cards -->
             <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="relative bg-white/80 p-4 rounded-3xl border-2 border-rose-100 shadow-xs hover:shadow-sm transition duration-300 group hover:-translate-y-1">
+                    <!-- [ปุ่มแก้ไขการ์ดที่ 1 - แสดงเฉพาะ Admin] -->
+                    <button id="btnEditCard1" onclick="openQuickEdit('card1')" title="แก้ไขการ์ดส่งด่วน" class="admin-only-btn edit-pulse-btn hidden absolute top-3 right-3 z-30 bg-rose-400 hover:bg-rose-500 text-white w-7 h-7 rounded-full shadow-md transition transform hover:scale-110 border-2 border-white flex items-center justify-center">
+                        <i class="fas fa-pen text-[10px]"></i>
+                    </button>
+
                     <div class="washi-tape washi-bottom-left"></div>
                     <div class="h-32 bg-rose-50/60 rounded-2xl mb-3 flex items-center justify-center overflow-hidden border border-rose-100 relative">
-                        <img src="https://placehold.co/400x300/fff0f3/f472b6?text=การันตีส่งจริง" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Credit Preview 1">
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-rose-400 flex items-center gap-1 border border-rose-100">
+                        <img id="card1Img" src="https://placehold.co/400x300/fff0f3/f472b6?text=การันตีส่งจริง" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Credit Preview 1">
+                        <div class="absolute top-2 left-2 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-rose-400 flex items-center gap-1 border border-rose-100">
                             <i class="fas fa-truck-fast"></i> Fast Delivery
                         </div>
                     </div>
-                    <h3 class="font-bold text-rose-400 text-xs mb-1 flex items-center">
+                    <h3 id="card1Title" class="font-bold text-rose-400 text-xs mb-1 flex items-center">
                         <i class="fas fa-box-open text-rose-300 mr-1.5"></i> จัดส่งรวดเร็วทุกวัน
                     </h3>
-                    <p class="text-[11px] text-gray-400 font-light leading-relaxed">แพ็คกันกระแทกแน่นหนา ได้รับสินค้ารวดเร็วทันใจ</p>
+                    <p id="card1Desc" class="text-[11px] text-gray-400 font-light leading-relaxed">แพ็คกันกระแทกแน่นหนา ได้รับสินค้ารวดเร็วทันใจ</p>
                 </div>
 
                 <div class="relative bg-white/80 p-4 rounded-3xl border-2 border-rose-100 shadow-xs hover:shadow-sm transition duration-300 group hover:-translate-y-1">
+                    <!-- [ปุ่มแก้ไขการ์ดที่ 2 - แสดงเฉพาะ Admin] -->
+                    <button id="btnEditCard2" onclick="openQuickEdit('card2')" title="แก้ไขการ์ดยอดนิยม" class="admin-only-btn edit-pulse-btn hidden absolute top-3 right-3 z-30 bg-rose-400 hover:bg-rose-500 text-white w-7 h-7 rounded-full shadow-md transition transform hover:scale-110 border-2 border-white flex items-center justify-center">
+                        <i class="fas fa-pen text-[10px]"></i>
+                    </button>
+
                     <div class="washi-tape washi-top-right"></div>
                     <div class="h-32 bg-rose-50/60 rounded-2xl mb-3 flex items-center justify-center overflow-hidden border border-rose-100 relative">
-                        <img src="https://placehold.co/400x300/fff0f3/f472b6?text=สินค้าแท้+100%25" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Credit Preview 2">
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-rose-400 flex items-center gap-1 border border-rose-100">
+                        <img id="card2Img" src="https://placehold.co/400x300/fff0f3/f472b6?text=สินค้าแท้+100%25" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Credit Preview 2">
+                        <div class="absolute top-2 left-2 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-rose-400 flex items-center gap-1 border border-rose-100">
                             <i class="fas fa-badge-check"></i> 100% Authentic
                         </div>
                     </div>
-                    <h3 class="font-bold text-rose-400 text-xs mb-1 flex items-center">
+                    <h3 id="card2Title" class="font-bold text-rose-400 text-xs mb-1 flex items-center">
                         <i class="fas fa-heart-circle-check text-rose-300 mr-1.5"></i> สินค้าแท้มีรีวิวแน่น
                     </h3>
-                    <p class="text-[11px] text-gray-400 font-light leading-relaxed">มีเครดิตการขายจริง ติชมรีวิวจากลูกค้าแน่นๆ</p>
+                    <p id="card2Desc" class="text-[11px] text-gray-400 font-light leading-relaxed">มีเครดิตการขายจริง ติชมรีวิวจากลูกค้าแน่นๆ</p>
                 </div>
             </section>
 
@@ -391,41 +407,6 @@
                 </button>
             </div>
 
-            <!-- Review Form -->
-            <div id="reviewFormContainer" class="hidden bg-white border-2 border-rose-100 rounded-3xl p-5 shadow-sm transition-all">
-                <h3 class="font-bold text-rose-400 mb-4 text-base flex items-center gap-2">
-                    <i class="fas fa-edit text-rose-300"></i> แสดงความคิดเห็น / ติชมร้านค้า
-                </h3>
-                <form onsubmit="submitCustomerReview(event)" class="space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-500 mb-1">ชื่อผู้รีวิว / ชื่อลูกค้า *</label>
-                            <input type="text" id="revName" required placeholder="เช่น คุณมินท์" class="w-full px-4 py-2 text-xs rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-500 mb-1">ให้คะแนนความพึงพอใจ *</label>
-                            <select id="revScore" class="w-full px-4 py-2 text-xs rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 transition font-kanit">
-                                <option value="5">5/5 ประทับใจมากที่สุด</option>
-                                <option value="4">4/5 ดีมาก</option>
-                                <option value="3">3/5 ปานกลาง</option>
-                                <option value="2">2/5 พอใช้</option>
-                                <option value="1">1/5 ต้องปรับปรุง</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-500 mb-1">ข้อความรีวิว / ติชม *</label>
-                        <textarea id="revComment" rows="3" required placeholder="แม่ค้าพูดจาน่ารักมาก ส่งของไว แพ็คดีสุดๆ..." class="w-full px-4 py-2 text-xs rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 transition"></textarea>
-                    </div>
-                    <div class="flex justify-end gap-2 pt-1">
-                        <button type="button" onclick="toggleReviewForm()" class="px-4 py-1.5 text-xs text-gray-400 hover:text-gray-600 font-medium">ยกเลิก</button>
-                        <button type="submit" onclick="playCuteSound()" class="px-5 py-2 bg-rose-300 hover:bg-rose-400 text-white font-bold text-xs rounded-full shadow-xs transition flex items-center gap-1.5">
-                            <i class="fas fa-paper-plane text-[10px]"></i> ส่งรีวิว
-                        </button>
-                    </div>
-                </form>
-            </div>
-
             <!-- Reviews List Area -->
             <div class="space-y-4 pt-2">
                 <h3 class="font-bold text-gray-600 text-base flex items-center justify-between">
@@ -439,6 +420,50 @@
         </div>
 
     </main>
+
+    <!-- MODAL POPUP: CUSTOMER REVIEW FORM (POP-UP) -->
+    <div id="reviewModalPopup" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-xl border-2 border-rose-100 overflow-hidden animate-fadeInScale">
+            <div class="p-4 bg-rose-50 border-b border-rose-100 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-pen-nib text-rose-400 text-base"></i>
+                    <h3 class="font-bold text-rose-500 text-sm">แสดงความคิดเห็น / ติชมร้านค้า</h3>
+                </div>
+                <button onclick="toggleReviewForm()" class="w-7 h-7 rounded-full bg-rose-100 text-rose-400 hover:bg-rose-200 flex items-center justify-center transition text-xs">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <form onsubmit="submitCustomerReview(event)" class="p-5 space-y-4 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-bold text-gray-600 mb-1">ชื่อผู้รีวิว / ชื่อลูกค้า *</label>
+                        <input type="text" id="revName" required placeholder="เช่น คุณมินท์" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-600 mb-1">ให้คะแนนความพึงพอใจ *</label>
+                        <select id="revScore" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs font-kanit">
+                            <option value="5">5/5 ประทับใจมากที่สุด</option>
+                            <option value="4">4/5 ดีมาก</option>
+                            <option value="3">3/5 ปานกลาง</option>
+                            <option value="2">2/5 พอใช้</option>
+                            <option value="1">1/5 ต้องปรับปรุง</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-600 mb-1">ข้อความรีวิว / ติชม *</label>
+                    <textarea id="revComment" rows="3" required placeholder="แม่ค้าพูดจาน่ารักมาก ส่งของไว แพ็คดีสุดๆ..." class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs"></textarea>
+                </div>
+                <div class="flex justify-end gap-2 pt-2 border-t border-rose-100">
+                    <button type="button" onclick="toggleReviewForm()" class="px-4 py-2 text-xs text-gray-400 hover:text-gray-600 font-medium">ยกเลิก</button>
+                    <button type="submit" onclick="playCuteSound()" class="px-5 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5">
+                        <i class="fas fa-paper-plane text-[10px]"></i> ส่งรีวิว
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Footer Copyright -->
     <footer class="mt-8 text-center text-xs text-rose-300/80 font-light z-10">
@@ -586,6 +611,17 @@
         logo: "https://placehold.co/200x200/fbcfe8/ffffff?text=Logo",
         banner: "https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+1122*495+(miori+shop)",
         creditBanner: "https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+Check+Credit+1122*495",
+        music: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3",
+        card1: {
+            title: "จัดส่งรวดเร็วทุกวัน",
+            desc: "แพ็คกันกระแทกแน่นหนา ได้รับสินค้ารวดเร็วทันใจ",
+            img: "https://placehold.co/400x300/fff0f3/f472b6?text=การันตีส่งจริง"
+        },
+        card2: {
+            title: "สินค้าแท้มีรีวิวแน่น",
+            desc: "มีเครดิตการขายจริง ติชมรีวิวจากลูกค้าแน่นๆ",
+            img: "https://placehold.co/400x300/fff0f3/f472b6?text=สินค้าแท้+100%25"
+        },
         contacts: {
             facebook: { url: "#", enabled: true },
             line: { url: "#", enabled: true },
@@ -620,6 +656,27 @@
         document.getElementById('logoImg').src = shopConfig.logo;
         document.getElementById('mainBannerImg').src = shopConfig.banner;
         document.getElementById('creditBannerImg').src = shopConfig.creditBanner || shopConfig.banner;
+
+        // Apply Card 1
+        if(shopConfig.card1) {
+            document.getElementById('card1Title').innerHTML = `<i class="fas fa-box-open text-rose-300 mr-1.5"></i> ${escapeHtml(shopConfig.card1.title)}`;
+            document.getElementById('card1Desc').textContent = shopConfig.card1.desc;
+            document.getElementById('card1Img').src = shopConfig.card1.img;
+        }
+
+        // Apply Card 2
+        if(shopConfig.card2) {
+            document.getElementById('card2Title').innerHTML = `<i class="fas fa-heart-circle-check text-rose-300 mr-1.5"></i> ${escapeHtml(shopConfig.card2.title)}`;
+            document.getElementById('card2Desc').textContent = shopConfig.card2.desc;
+            document.getElementById('card2Img').src = shopConfig.card2.img;
+        }
+
+        // Apply Music Source
+        const audioElem = document.getElementById('bgMusic');
+        if (audioElem.querySelector('source').src !== shopConfig.music) {
+            audioElem.querySelector('source').src = shopConfig.music;
+            audioElem.load();
+        }
 
         renderContactLinksUI();
     }
@@ -698,6 +755,55 @@
                 </div>
             `;
             saveBtn.setAttribute('onclick', "saveInlineEdit('logo')");
+        } else if (fieldType === 'music') {
+            titleElem.textContent = "เปลี่ยนเพลงประกอบ BGM (MP3 Link)";
+            contentElem.innerHTML = `
+                <div>
+                    <label class="block font-bold text-gray-600 mb-1">URL ไฟล์เพลง MP3:</label>
+                    <input type="text" id="inlineInputMusic" value="${escapeHtml(shopConfig.music)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
+                </div>
+            `;
+            saveBtn.setAttribute('onclick', "saveInlineEdit('music')");
+        } else if (fieldType === 'card1') {
+            const c1 = shopConfig.card1 || { title: "จัดส่งรวดเร็วทุกวัน", desc: "แพ็คกันกระแทกแน่นหนา ได้รับสินค้ารวดเร็วทันใจ", img: "https://placehold.co/400x300/fff0f3/f472b6?text=การันตีส่งจริง" };
+            titleElem.textContent = "แก้ไขการ์ดที่ 1 (จัดส่งด่วน)";
+            contentElem.innerHTML = `
+                <div class="space-y-3">
+                    <div>
+                        <label class="block font-bold text-gray-600 mb-1">หัวข้อการ์ด:</label>
+                        <input type="text" id="inlineCard1Title" value="${escapeHtml(c1.title)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-600 mb-1">รายละเอียด:</label>
+                        <input type="text" id="inlineCard1Desc" value="${escapeHtml(c1.desc)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-600 mb-1">URL รูปภาพ:</label>
+                        <input type="text" id="inlineCard1Img" value="${escapeHtml(c1.img)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 text-xs">
+                    </div>
+                </div>
+            `;
+            saveBtn.setAttribute('onclick', "saveInlineEdit('card1')");
+        } else if (fieldType === 'card2') {
+            const c2 = shopConfig.card2 || { title: "สินค้าแท้มีรีวิวแน่น", desc: "มีเครดิตการขายจริง ติชมรีวิวจากลูกค้าแน่นๆ", img: "https://placehold.co/400x300/fff0f3/f472b6?text=สินค้าแท้+100%25" };
+            titleElem.textContent = "แก้ไขการ์ดที่ 2 (สินค้าแท้)";
+            contentElem.innerHTML = `
+                <div class="space-y-3">
+                    <div>
+                        <label class="block font-bold text-gray-600 mb-1">หัวข้อการ์ด:</label>
+                        <input type="text" id="inlineCard2Title" value="${escapeHtml(c2.title)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-600 mb-1">รายละเอียด:</label>
+                        <input type="text" id="inlineCard2Desc" value="${escapeHtml(c2.desc)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-600 mb-1">URL รูปภาพ:</label>
+                        <input type="text" id="inlineCard2Img" value="${escapeHtml(c2.img)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 text-xs">
+                    </div>
+                </div>
+            `;
+            saveBtn.setAttribute('onclick', "saveInlineEdit('card2')");
         } else if (fieldType === 'info') {
             titleElem.textContent = "แก้ไขชื่อร้านและคำบรรยาย";
             contentElem.innerHTML = `
@@ -776,6 +882,24 @@
             const val = document.getElementById('inlineInputLogo').value.trim();
             if (val) shopConfig.logo = val;
             showToast("อัปเดตรูปโลโก้เรียบร้อยแล้วค่ะ");
+        } else if (fieldType === 'music') {
+            const val = document.getElementById('inlineInputMusic').value.trim();
+            if (val) shopConfig.music = val;
+            showToast("อัปเดตเพลง BGM เรียบร้อยแล้วค่ะ");
+        } else if (fieldType === 'card1') {
+            shopConfig.card1 = {
+                title: document.getElementById('inlineCard1Title').value.trim() || "จัดส่งรวดเร็วทุกวัน",
+                desc: document.getElementById('inlineCard1Desc').value.trim() || "แพ็คกันกระแทกแน่นหนา...",
+                img: document.getElementById('inlineCard1Img').value.trim() || "https://placehold.co/400x300"
+            };
+            showToast("อัปเดตการ์ดที่ 1 เรียบร้อยแล้วค่ะ");
+        } else if (fieldType === 'card2') {
+            shopConfig.card2 = {
+                title: document.getElementById('inlineCard2Title').value.trim() || "สินค้าแท้มีรีวิวแน่น",
+                desc: document.getElementById('inlineCard2Desc').value.trim() || "มีเครดิตการขายจริง...",
+                img: document.getElementById('inlineCard2Img').value.trim() || "https://placehold.co/400x300"
+            };
+            showToast("อัปเดตการ์ดที่ 2 เรียบร้อยแล้วค่ะ");
         } else if (fieldType === 'info') {
             const titleVal = document.getElementById('inlineInputTitle').value.trim();
             const descVal = document.getElementById('inlineInputDesc').value.trim();
@@ -828,8 +952,8 @@
     }
 
     function toggleReviewForm() {
-        const form = document.getElementById('reviewFormContainer');
-        form.classList.toggle('hidden');
+        const modal = document.getElementById('reviewModalPopup');
+        modal.classList.toggle('hidden');
     }
 
     function renderCustomerReviews() {
@@ -942,7 +1066,7 @@
             name: name,
             score: score,
             comment: comment,
-            approved: false, // ลูกค้าส่งมารออนุมัติก่อน
+            approved: false, // รอแอดมินอนุมัติ
             hidden: false,
             date: new Date().toISOString().split('T')[0]
         };
