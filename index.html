@@ -151,7 +151,6 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* Pulse Highlight for Edit Buttons */
         .edit-pulse-btn {
             animation: editBtnGlow 2s infinite;
         }
@@ -179,12 +178,12 @@
 </head>
 <body class="text-gray-600 min-h-screen flex flex-col items-center justify-between p-3 sm:p-8 relative pb-16">
 
-    <!-- Ambient Floating Cute Ornaments -->
+    <!-- Floating Background Ornaments -->
     <div class="bubble w-40 h-40 top-10 left-5" style="animation-delay: 0s;"></div>
     <div class="bubble w-56 h-56 bottom-20 right-5" style="animation-delay: -3s;"></div>
     <div class="bubble w-28 h-28 top-1/2 left-10" style="animation-delay: -5s;"></div>
 
-    <!-- Top Floating Music & Control Bar -->
+    <!-- Top Music & Admin Auth Bar -->
     <div class="fixed top-4 right-4 sm:top-6 sm:right-6 z-40 bg-white/90 backdrop-blur-md border-2 border-rose-100 shadow-md rounded-full px-4 py-2 flex items-center space-x-3 text-xs hover:scale-105 transition-all">
         <button id="musicToggleBtn" onclick="toggleMusic()" class="w-8 h-8 rounded-full bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white flex items-center justify-center transition-all shadow-sm">
             <i id="musicIcon" class="fas fa-music text-xs"></i>
@@ -199,7 +198,7 @@
             <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
         </audio>
 
-        <!-- Admin Control Modal Toggle -->
+        <!-- Admin Auth Toggle Button -->
         <button id="adminAuthBtn" onclick="playCuteSound(); handleAdminAuthClick()" class="ml-1 bg-rose-50 hover:bg-rose-100 text-rose-400 px-3 py-1.5 rounded-full text-xs font-semibold transition border border-rose-200 flex items-center gap-1.5 shadow-xs">
             <i id="adminAuthIcon" class="fas fa-lock text-rose-300 text-[10px]"></i> <span id="adminAuthText">แอดมิน</span>
         </button>
@@ -211,15 +210,15 @@
         <!-- PAGE 1: HOME PAGE VIEW -->
         <div id="homePageView" class="page-view space-y-7">
             
-            <!-- 1. Banner Section (มีปุ่มแก้ไขเฉพาะจุดที่จะแสดงเฉพาะเมื่อ Admin Login) -->
+            <!-- 1. Banner Section -->
             <section class="relative w-full group">
                 <div class="washi-tape washi-top-right"></div>
                 <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur border border-rose-200 text-rose-400 px-3 py-1 rounded-full text-[10px] font-bold shadow-sm flex items-center gap-1 transform -rotate-3 group-hover:rotate-0 transition">
                     <i class="fas fa-image text-rose-300"></i> Banner 1122x495
                 </div>
 
-                <!-- [ปุ่มแก้ไขรูปแบนเนอร์ - แสดงเฉพาะ Admin Logged In] -->
-                <button id="btnEditBanner" onclick="openQuickEdit('banner')" title="แก้ไขรูปแบนเนอร์" class="admin-only-btn edit-pulse-btn hidden absolute top-3 right-3 z-30 bg-rose-400 hover:bg-rose-500 text-white p-2 rounded-full shadow-lg transition transform hover:scale-110 border-2 border-white flex items-center gap-1 text-[11px] font-bold px-3">
+                <!-- [ปุ่มแก้ไขรูปแบนเนอร์ - แสดงเฉพาะ Admin] -->
+                <button id="btnEditBanner" onclick="openQuickEdit('banner')" title="แก้ไขรูปแบนเนอร์หน้าแรก" class="admin-only-btn edit-pulse-btn hidden absolute top-3 right-3 z-30 bg-rose-400 hover:bg-rose-500 text-white p-2 rounded-full shadow-lg transition transform hover:scale-110 border-2 border-white flex items-center gap-1 text-[11px] font-bold px-3">
                     <i class="fas fa-camera text-xs"></i> <span>เปลี่ยนแบนเนอร์</span>
                 </button>
 
@@ -234,7 +233,7 @@
                 <div class="relative flex-shrink-0">
                     <div class="washi-tape washi-top-left"></div>
                     <div class="polaroid rounded-2xl transform -rotate-3 hover:rotate-0 relative">
-                        <!-- [ปุ่มแก้ไขรูปโลโก้ - แสดงเฉพาะ Admin Logged In] -->
+                        <!-- [ปุ่มแก้ไขรูปโลโก้ - แสดงเฉพาะ Admin] -->
                         <button id="btnEditLogo" onclick="openQuickEdit('logo')" title="เปลี่ยนรูปโลโก้" class="admin-only-btn edit-pulse-btn hidden absolute -top-2 -right-2 z-30 bg-rose-400 hover:bg-rose-500 text-white w-7 h-7 rounded-full shadow-md transition transform hover:scale-110 border-2 border-white flex items-center justify-center">
                             <i class="fas fa-pencil text-[10px]"></i>
                         </button>
@@ -253,7 +252,7 @@
                     <div class="flex flex-col sm:flex-row items-center gap-2 justify-center sm:justify-start">
                         <div class="flex items-center gap-2">
                             <h1 id="shopTitle" class="font-bold text-2xl sm:text-3xl text-rose-400 tracking-wide">Baby Rich</h1>
-                            <!-- [ปุ่มแก้ไขชื่อร้าน - แสดงเฉพาะ Admin Logged In] -->
+                            <!-- [ปุ่มแก้ไขชื่อร้าน - แสดงเฉพาะ Admin] -->
                             <button id="btnEditInfo" onclick="openQuickEdit('info')" title="แก้ไขชื่อร้านและคำบรรยาย" class="admin-only-btn edit-pulse-btn hidden bg-rose-100 hover:bg-rose-200 text-rose-500 w-7 h-7 rounded-full transition shadow-xs flex items-center justify-center border border-rose-200 shrink-0">
                                 <i class="fas fa-pen text-[11px]"></i>
                             </button>
@@ -331,29 +330,20 @@
             </section>
 
             <!-- 5. Contact Us Section -->
-            <section class="text-center border-t-2 border-rose-100/70 pt-7 pb-2">
+            <section class="text-center border-t-2 border-rose-100/70 pt-5 pb-2 relative">
+                <!-- [ปุ่มแก้ไขช่องทางการติดต่อ - อยู่ข้างบน Contact Us แสดงเฉพาะ Admin] -->
+                <div class="mb-3 flex justify-center">
+                    <button id="btnEditContact" onclick="openQuickEdit('contact')" class="admin-only-btn edit-pulse-btn hidden bg-rose-400 hover:bg-rose-500 text-white px-3 py-1 rounded-full text-xs font-bold transition shadow-md flex items-center gap-1.5 border border-white">
+                        <i class="fas fa-pen text-[10px]"></i> แก้ไขลิงก์การติดต่อ
+                    </button>
+                </div>
+
                 <h2 id="contactTitleText" class="font-bold text-xl text-rose-400 mb-6 flex items-center justify-center gap-2">
                     <i class="fas fa-envelope-open-text text-rose-300 text-lg"></i> Contact us
                 </h2>
-                <div class="flex justify-center items-center gap-6 sm:gap-8 px-2">
-                    <a href="#" onclick="playCuteSound()" class="group flex flex-col items-center gap-2">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-rose-100 shadow-xs hover:shadow-md hover:border-rose-300 hover:bg-rose-50/50 text-blue-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1.5 group-hover:scale-105">
-                            <i class="fab fa-facebook-f text-xl sm:text-2xl"></i>
-                        </div>
-                        <span class="font-bold text-[11px] sm:text-xs text-gray-500 group-hover:text-rose-400 transition-colors">Facebook</span>
-                    </a>
-                    <a href="#" onclick="playCuteSound()" class="group flex flex-col items-center gap-2">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-rose-100 shadow-xs hover:shadow-md hover:border-rose-300 hover:bg-rose-50/50 text-emerald-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1.5 group-hover:scale-105">
-                            <i class="fab fa-line text-2xl sm:text-3xl"></i>
-                        </div>
-                        <span class="font-bold text-[11px] sm:text-xs text-gray-500 group-hover:text-rose-400 transition-colors">Line</span>
-                    </a>
-                    <a href="#" onclick="playCuteSound()" class="group flex flex-col items-center gap-2">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-rose-100 shadow-xs hover:shadow-md hover:border-rose-300 hover:bg-rose-50/50 text-rose-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1.5 group-hover:scale-105">
-                            <i class="fab fa-instagram text-2xl sm:text-3xl"></i>
-                        </div>
-                        <span class="font-bold text-[11px] sm:text-xs text-gray-500 group-hover:text-rose-400 transition-colors">Instagram</span>
-                    </a>
+
+                <div id="contactLinksContainer" class="flex justify-center items-center gap-6 sm:gap-8 px-2">
+                    <!-- Dynamic Contact Links -->
                 </div>
             </section>
         </div>
@@ -372,9 +362,17 @@
                 </span>
             </div>
 
-            <div class="relative w-full rounded-3xl overflow-hidden shadow-xs border-2 border-rose-100 aspect-[1122/495] bg-rose-50/50">
-                <img id="creditBannerImg" src="https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+Check+Credit+1122*495" alt="Credit Banner 1122*495" class="w-full h-full object-cover">
-            </div>
+            <!-- Banner หน้ารีวิว (Check Credit Banner) -->
+            <section class="relative w-full group">
+                <!-- [ปุ่มแก้ไขแบนเนอร์หน้ารีวิว - อยู่ข้างบนแบนเนอร์ แสดงเฉพาะ Admin] -->
+                <button id="btnEditCreditBanner" onclick="openQuickEdit('creditBanner')" title="แก้ไขแบนเนอร์หน้ารีวิว" class="admin-only-btn edit-pulse-btn hidden absolute top-3 right-3 z-30 bg-rose-400 hover:bg-rose-500 text-white p-2 rounded-full shadow-lg transition transform hover:scale-110 border-2 border-white flex items-center gap-1 text-[11px] font-bold px-3">
+                    <i class="fas fa-camera text-xs"></i> <span>เปลี่ยนแบนเนอร์หน้ารีวิว</span>
+                </button>
+
+                <div class="relative w-full rounded-3xl overflow-hidden shadow-xs border-2 border-rose-100 aspect-[1122/495] bg-rose-50/50">
+                    <img id="creditBannerImg" src="https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+Check+Credit+1122*495" alt="Credit Banner 1122*495" class="w-full h-full object-cover">
+                </div>
+            </section>
 
             <div class="bg-white/90 border-2 border-rose-100 rounded-3xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs relative overflow-hidden">
                 <div class="text-center sm:text-left">
@@ -435,7 +433,7 @@
                     <span class="text-xs text-rose-300 font-normal">อัปเดตล่าสุดเรียลไทม์</span>
                 </h3>
                 <div id="reviewsList" class="space-y-3">
-                    <!-- Dynamic Items -->
+                    <!-- Dynamic Reviews Items Injected with Admin Controls inside Cards -->
                 </div>
             </div>
         </div>
@@ -447,9 +445,9 @@
         &copy; 2026 miori shop - Baby Rich. All rights reserved.
     </footer>
 
-    <!-- MODAL POPUP: QUICK INLINE EDIT (แก้ไขจุดนั้นๆ ทันที) -->
+    <!-- MODAL POPUP: QUICK INLINE EDIT -->
     <div id="quickEditModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-md rounded-3xl shadow-xl border-2 border-rose-100 overflow-hidden transform transition-all animate-fadeIn">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-xl border-2 border-rose-100 overflow-hidden">
             <div class="p-4 bg-rose-50 border-b border-rose-100 flex items-center justify-between">
                 <div class="flex items-center space-x-2">
                     <i id="quickEditIcon" class="fas fa-edit text-rose-400 text-lg"></i>
@@ -461,9 +459,8 @@
             </div>
 
             <div class="p-5 space-y-4">
-                <!-- Inner Form Container Injected by JS -->
                 <div id="quickEditContent" class="space-y-3 text-xs">
-                    <!-- Dynamic Field Controls -->
+                    <!-- Dynamic Inline Edit Controls -->
                 </div>
 
                 <div class="flex justify-end gap-2 pt-2 border-t border-rose-100">
@@ -471,94 +468,6 @@
                     <button id="quickEditSaveBtn" onclick="" class="px-5 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5">
                         <i class="fas fa-save"></i> บันทึกการเปลี่ยนแปลง
                     </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL: ADMIN CONTROL PANEL MAIN -->
-    <div id="adminModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-xl rounded-3xl shadow-xl border-2 border-rose-100 max-h-[90vh] flex flex-col overflow-hidden">
-            <div class="p-4 bg-rose-50 border-b border-rose-100 flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-sliders text-rose-400 text-lg"></i>
-                    <h2 class="font-mali font-bold text-lg text-rose-400">ระบบหลังบ้าน (Admin Dashboard)</h2>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="adminLogout()" class="px-3 py-1 bg-rose-100 hover:bg-rose-200 text-rose-500 text-xs font-bold rounded-full transition">
-                        <i class="fas fa-sign-out-alt"></i> ออกจากระบบ
-                    </button>
-                    <button onclick="toggleAdminPanel()" class="w-7 h-7 rounded-full bg-rose-100 text-rose-400 hover:bg-rose-200 flex items-center justify-center transition text-xs">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <div class="p-5 overflow-y-auto space-y-5">
-                <div class="flex border-b border-rose-100 gap-4 text-xs font-bold">
-                    <button id="tabConfigBtn" onclick="switchAdminTab('config')" class="pb-2 text-rose-400 border-b-2 border-rose-300">ตั้งค่าร้านค้า & รูปภาพ</button>
-                    <button id="tabReviewsBtn" onclick="switchAdminTab('reviews')" class="pb-2 text-gray-400">จัดการรีวิว (อนุมัติ/ซ่อน/ลบ)</button>
-                </div>
-
-                <!-- Tab 1: Configuration -->
-                <div id="adminTabConfig" class="space-y-4 text-xs">
-                    <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                        <div class="flex-1 w-full">
-                            <label class="block font-bold text-gray-600 mb-1">ชื่อร้านค้า (Shop Name)</label>
-                            <input type="text" id="adminShopTitle" class="w-full px-3 py-2 rounded-xl border border-rose-200 focus:outline-none focus:border-rose-400">
-                        </div>
-                        <button onclick="saveSingleConfig('title')" class="sm:mt-5 w-full sm:w-auto px-4 py-2 bg-rose-400 hover:bg-rose-500 text-white font-bold rounded-xl transition shrink-0 flex items-center justify-center gap-1">
-                            <i class="fas fa-save"></i> บันทึก
-                        </button>
-                    </div>
-
-                    <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                        <div class="flex-1 w-full">
-                            <label class="block font-bold text-gray-600 mb-1">รายละเอียดร้านค้า (Description)</label>
-                            <textarea id="adminShopDesc" rows="2" class="w-full px-3 py-2 rounded-xl border border-rose-200 focus:outline-none focus:border-rose-400"></textarea>
-                        </div>
-                        <button onclick="saveSingleConfig('desc')" class="sm:mt-5 w-full sm:w-auto px-4 py-2 bg-rose-400 hover:bg-rose-500 text-white font-bold rounded-xl transition shrink-0 flex items-center justify-center gap-1">
-                            <i class="fas fa-save"></i> บันทึก
-                        </button>
-                    </div>
-
-                    <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                        <div class="flex-1 w-full">
-                            <label class="block font-bold text-gray-600 mb-1">URL โลโก้ (Logo Image)</label>
-                            <input type="text" id="adminLogoUrl" class="w-full px-3 py-2 rounded-xl border border-rose-200 focus:outline-none focus:border-rose-400">
-                        </div>
-                        <button onclick="saveSingleConfig('logo')" class="sm:mt-5 w-full sm:w-auto px-4 py-2 bg-rose-400 hover:bg-rose-500 text-white font-bold rounded-xl transition shrink-0 flex items-center justify-center gap-1">
-                            <i class="fas fa-save"></i> บันทึก
-                        </button>
-                    </div>
-
-                    <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                        <div class="flex-1 w-full">
-                            <label class="block font-bold text-gray-600 mb-1">URL แบนเนอร์ (1122*495 Banner)</label>
-                            <input type="text" id="adminBannerUrl" class="w-full px-3 py-2 rounded-xl border border-rose-200 focus:outline-none focus:border-rose-400">
-                        </div>
-                        <button onclick="saveSingleConfig('banner')" class="sm:mt-5 w-full sm:w-auto px-4 py-2 bg-rose-400 hover:bg-rose-500 text-white font-bold rounded-xl transition shrink-0 flex items-center justify-center gap-1">
-                            <i class="fas fa-save"></i> บันทึก
-                        </button>
-                    </div>
-
-                    <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                        <div class="flex-1 w-full">
-                            <label class="block font-bold text-gray-600 mb-1">URL เพลง BGM (MP3 Link)</label>
-                            <input type="text" id="adminMusicUrl" class="w-full px-3 py-2 rounded-xl border border-rose-200 focus:outline-none focus:border-rose-400">
-                        </div>
-                        <button onclick="saveSingleConfig('music')" class="sm:mt-5 w-full sm:w-auto px-4 py-2 bg-rose-400 hover:bg-rose-500 text-white font-bold rounded-xl transition shrink-0 flex items-center justify-center gap-1">
-                            <i class="fas fa-save"></i> บันทึก
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Tab 2: Reviews Admin -->
-                <div id="adminTabReviews" class="hidden space-y-3">
-                    <p class="text-xs text-gray-400">แอดมินสามารถกดอนุมัติ ซ่อน หรือลบความคิดเห็นของลูกค้าได้ทันที</p>
-                    <div id="adminReviewsList" class="space-y-2.5">
-                        <!-- Admin items injected by JS -->
-                    </div>
                 </div>
             </div>
         </div>
@@ -593,22 +502,31 @@
 
     <!-- JavaScript Logic -->
     <script>
+    function playCuteSound() {
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.15);
+        } catch (e) {}
+    }
+
     let isAdminLoggedIn = false;
-    const ADMIN_PASSWORD = "1234"; // รหัสผ่านแอดมินสำหรับทดสอบ
+    const ADMIN_PASSWORD = "1234";
 
     function handleAdminAuthClick() {
         if (isAdminLoggedIn) {
-            toggleAdminPanel();
+            adminLogout();
         } else {
             document.getElementById('adminLoginModal').classList.remove('hidden');
-        }
-    }
-
-    function toggleAdminPanel() {
-        const modal = document.getElementById('adminModal');
-        modal.classList.toggle('hidden');
-        if (!modal.classList.contains('hidden')) {
-            renderAdminReviewsList();
         }
     }
 
@@ -624,8 +542,8 @@
             isAdminLoggedIn = true;
             closeAdminLoginModal();
             updateAdminStateUI();
-            showToast("เข้าสู่ระบบแอดมินเรียบร้อยแล้ว ปุ่มแก้ไขเปิดใช้งานแล้วค่ะ");
-            toggleAdminPanel();
+            renderCustomerReviews();
+            showToast("เข้าสู่ระบบแอดมินเรียบร้อย ปุ่มแก้ไขเฉพาะจุดเปิดใช้งานแล้วค่ะ");
         } else {
             showToast("รหัสผ่านไม่ถูกต้อง! กรุณาลองใหม่อีกครั้ง");
         }
@@ -635,7 +553,7 @@
         playCuteSound();
         isAdminLoggedIn = false;
         updateAdminStateUI();
-        toggleAdminPanel();
+        renderCustomerReviews();
         showToast("ออกจากระบบแอดมินเรียบร้อยแล้ว");
     }
 
@@ -645,8 +563,8 @@
         const adminBtns = document.querySelectorAll('.admin-only-btn');
 
         if (isAdminLoggedIn) {
-            btnText.textContent = "ระบบหลังบ้าน";
-            btnIcon.className = "fas fa-cog text-rose-300 text-[10px]";
+            btnText.textContent = "ออกจากระบบ";
+            btnIcon.className = "fas fa-unlock text-rose-300 text-[10px]";
             adminBtns.forEach(btn => btn.classList.remove('hidden'));
         } else {
             btnText.textContent = "แอดมิน";
@@ -667,7 +585,12 @@
         desc: "ยินดีต้อนรับสู่ miori shop ศูนย์รวมสินค้าลิขสิทธิ์แท้ น่ารัก สดใส บริการด้วยใจ ตอบไว ส่งของทุกวันค่ะ สอบถามขอดูรูปเพิ่มเติมได้เลยน้า",
         logo: "https://placehold.co/200x200/fbcfe8/ffffff?text=Logo",
         banner: "https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+1122*495+(miori+shop)",
-        music: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+        creditBanner: "https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+Check+Credit+1122*495",
+        contacts: {
+            facebook: { url: "#", enabled: true },
+            line: { url: "#", enabled: true },
+            instagram: { url: "#", enabled: true }
+        }
     };
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -696,48 +619,81 @@
         document.getElementById('shopDesc').textContent = shopConfig.desc;
         document.getElementById('logoImg').src = shopConfig.logo;
         document.getElementById('mainBannerImg').src = shopConfig.banner;
-        document.getElementById('creditBannerImg').src = shopConfig.banner;
+        document.getElementById('creditBannerImg').src = shopConfig.creditBanner || shopConfig.banner;
 
-        const audioElem = document.getElementById('bgMusic');
-        const sourceElem = audioElem.querySelector('source');
-        if (sourceElem.src !== shopConfig.music) {
-            sourceElem.src = shopConfig.music;
-            audioElem.load();
-        }
-
-        document.getElementById('adminShopTitle').value = shopConfig.title;
-        document.getElementById('adminShopDesc').value = shopConfig.desc;
-        document.getElementById('adminLogoUrl').value = shopConfig.logo;
-        document.getElementById('adminBannerUrl').value = shopConfig.banner;
-        document.getElementById('adminMusicUrl').value = shopConfig.music;
+        renderContactLinksUI();
     }
 
-    // INLINE QUICK EDIT FUNCTION (กดปุ่มจุดไหน แก้ตรงจุดนั้นทันที)
-    let currentEditField = '';
+    function renderContactLinksUI() {
+        const container = document.getElementById('contactLinksContainer');
+        container.innerHTML = '';
+
+        const c = shopConfig.contacts || {};
+
+        if (c.facebook && c.facebook.enabled) {
+            container.innerHTML += `
+                <a href="${escapeHtml(c.facebook.url)}" target="_blank" onclick="playCuteSound()" class="group flex flex-col items-center gap-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-rose-100 shadow-xs hover:shadow-md hover:border-rose-300 hover:bg-rose-50/50 text-blue-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1.5 group-hover:scale-105">
+                        <i class="fab fa-facebook-f text-xl sm:text-2xl"></i>
+                    </div>
+                    <span class="font-bold text-[11px] sm:text-xs text-gray-500 group-hover:text-rose-400 transition-colors">Facebook</span>
+                </a>
+            `;
+        }
+
+        if (c.line && c.line.enabled) {
+            container.innerHTML += `
+                <a href="${escapeHtml(c.line.url)}" target="_blank" onclick="playCuteSound()" class="group flex flex-col items-center gap-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-rose-100 shadow-xs hover:shadow-md hover:border-rose-300 hover:bg-rose-50/50 text-emerald-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1.5 group-hover:scale-105">
+                        <i class="fab fa-line text-2xl sm:text-3xl"></i>
+                    </div>
+                    <span class="font-bold text-[11px] sm:text-xs text-gray-500 group-hover:text-rose-400 transition-colors">Line</span>
+                </a>
+            `;
+        }
+
+        if (c.instagram && c.instagram.enabled) {
+            container.innerHTML += `
+                <a href="${escapeHtml(c.instagram.url)}" target="_blank" onclick="playCuteSound()" class="group flex flex-col items-center gap-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-rose-100 shadow-xs hover:shadow-md hover:border-rose-300 hover:bg-rose-50/50 text-rose-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1.5 group-hover:scale-105">
+                        <i class="fab fa-instagram text-2xl sm:text-3xl"></i>
+                    </div>
+                    <span class="font-bold text-[11px] sm:text-xs text-gray-500 group-hover:text-rose-400 transition-colors">Instagram</span>
+                </a>
+            `;
+        }
+    }
 
     function openQuickEdit(fieldType) {
         playCuteSound();
-        currentEditField = fieldType;
         const modal = document.getElementById('quickEditModal');
         const titleElem = document.getElementById('quickEditTitle');
         const contentElem = document.getElementById('quickEditContent');
         const saveBtn = document.getElementById('quickEditSaveBtn');
 
         if (fieldType === 'banner') {
-            titleElem.textContent = "เปลี่ยนรูปภาพแบนเนอร์ (Banner 1122*495)";
+            titleElem.textContent = "เปลี่ยนรูปภาพแบนเนอร์หน้าแรก (1122*495)";
             contentElem.innerHTML = `
                 <div>
-                    <label class="block font-bold text-gray-600 mb-1">ใส่ URL รูปภาพแบนเนอร์ใหม่:</label>
+                    <label class="block font-bold text-gray-600 mb-1">URL รูปภาพแบนเนอร์หน้าแรก:</label>
                     <input type="text" id="inlineInputBanner" value="${escapeHtml(shopConfig.banner)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
                 </div>
-                <div class="mt-2 text-[10px] text-gray-400">* แนะนำขนาด 1122 x 495 px</div>
             `;
             saveBtn.setAttribute('onclick', "saveInlineEdit('banner')");
+        } else if (fieldType === 'creditBanner') {
+            titleElem.textContent = "เปลี่ยนรูปแบนเนอร์หน้ารีวิว (1122*495)";
+            contentElem.innerHTML = `
+                <div>
+                    <label class="block font-bold text-gray-600 mb-1">URL รูปแบนเนอร์หน้ารีวิว:</label>
+                    <input type="text" id="inlineInputCreditBanner" value="${escapeHtml(shopConfig.creditBanner || shopConfig.banner)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
+                </div>
+            `;
+            saveBtn.setAttribute('onclick', "saveInlineEdit('creditBanner')");
         } else if (fieldType === 'logo') {
             titleElem.textContent = "เปลี่ยนรูปโลโก้ร้านค้า (Logo)";
             contentElem.innerHTML = `
                 <div>
-                    <label class="block font-bold text-gray-600 mb-1">ใส่ URL รูปโลโก้ใหม่:</label>
+                    <label class="block font-bold text-gray-600 mb-1">URL รูปโลโก้ใหม่:</label>
                     <input type="text" id="inlineInputLogo" value="${escapeHtml(shopConfig.logo)}" class="w-full px-3 py-2 rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
                 </div>
             `;
@@ -757,6 +713,46 @@
                 </div>
             `;
             saveBtn.setAttribute('onclick', "saveInlineEdit('info')");
+        } else if (fieldType === 'contact') {
+            titleElem.textContent = "แก้ไขช่องทางการติดต่อ (Contact Us)";
+            const c = shopConfig.contacts || { facebook: {url:'#', enabled:true}, line: {url:'#', enabled:true}, instagram: {url:'#', enabled:true} };
+            contentElem.innerHTML = `
+                <div class="space-y-3">
+                    <div class="p-2.5 bg-rose-50/50 rounded-xl border border-rose-100">
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="font-bold text-gray-700 flex items-center gap-1"><i class="fab fa-facebook text-blue-500"></i> Facebook Link</label>
+                            <label class="flex items-center gap-1 cursor-pointer">
+                                <input type="checkbox" id="contactFbEnable" ${c.facebook.enabled ? 'checked' : ''} class="accent-rose-400">
+                                <span>แสดงผล</span>
+                            </label>
+                        </div>
+                        <input type="text" id="contactFbUrl" value="${escapeHtml(c.facebook.url)}" placeholder="https://facebook.com/..." class="w-full px-3 py-1.5 rounded-lg border border-rose-200 text-xs">
+                    </div>
+
+                    <div class="p-2.5 bg-rose-50/50 rounded-xl border border-rose-100">
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="font-bold text-gray-700 flex items-center gap-1"><i class="fab fa-line text-emerald-500"></i> Line Link</label>
+                            <label class="flex items-center gap-1 cursor-pointer">
+                                <input type="checkbox" id="contactLineEnable" ${c.line.enabled ? 'checked' : ''} class="accent-rose-400">
+                                <span>แสดงผล</span>
+                            </label>
+                        </div>
+                        <input type="text" id="contactLineUrl" value="${escapeHtml(c.line.url)}" placeholder="https://line.me/..." class="w-full px-3 py-1.5 rounded-lg border border-rose-200 text-xs">
+                    </div>
+
+                    <div class="p-2.5 bg-rose-50/50 rounded-xl border border-rose-100">
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="font-bold text-gray-700 flex items-center gap-1"><i class="fab fa-instagram text-rose-500"></i> Instagram Link</label>
+                            <label class="flex items-center gap-1 cursor-pointer">
+                                <input type="checkbox" id="contactIgEnable" ${c.instagram.enabled ? 'checked' : ''} class="accent-rose-400">
+                                <span>แสดงผล</span>
+                            </label>
+                        </div>
+                        <input type="text" id="contactIgUrl" value="${escapeHtml(c.instagram.url)}" placeholder="https://instagram.com/..." class="w-full px-3 py-1.5 rounded-lg border border-rose-200 text-xs">
+                    </div>
+                </div>
+            `;
+            saveBtn.setAttribute('onclick', "saveInlineEdit('contact')");
         }
 
         modal.classList.remove('hidden');
@@ -771,7 +767,11 @@
         if (fieldType === 'banner') {
             const val = document.getElementById('inlineInputBanner').value.trim();
             if (val) shopConfig.banner = val;
-            showToast("อัปเดตรูปแบนเนอร์เรียบร้อยแล้วค่ะ");
+            showToast("อัปเดตรูปแบนเนอร์หน้าแรกเรียบร้อยแล้วค่ะ");
+        } else if (fieldType === 'creditBanner') {
+            const val = document.getElementById('inlineInputCreditBanner').value.trim();
+            if (val) shopConfig.creditBanner = val;
+            showToast("อัปเดตรูปแบนเนอร์หน้ารีวิวเรียบร้อยแล้วค่ะ");
         } else if (fieldType === 'logo') {
             const val = document.getElementById('inlineInputLogo').value.trim();
             if (val) shopConfig.logo = val;
@@ -782,38 +782,27 @@
             if (titleVal) shopConfig.title = titleVal;
             if (descVal) shopConfig.desc = descVal;
             showToast("อัปเดตข้อมูลร้านค้าเรียบร้อยแล้วค่ะ");
+        } else if (fieldType === 'contact') {
+            shopConfig.contacts = {
+                facebook: {
+                    url: document.getElementById('contactFbUrl').value.trim() || '#',
+                    enabled: document.getElementById('contactFbEnable').checked
+                },
+                line: {
+                    url: document.getElementById('contactLineUrl').value.trim() || '#',
+                    enabled: document.getElementById('contactLineEnable').checked
+                },
+                instagram: {
+                    url: document.getElementById('contactIgUrl').value.trim() || '#',
+                    enabled: document.getElementById('contactIgEnable').checked
+                }
+            };
+            showToast("อัปเดตช่องทางการติดต่อเรียบร้อยแล้วค่ะ");
         }
 
         localStorage.setItem('miori_config', JSON.stringify(shopConfig));
         applyConfigToUI();
         closeQuickEdit();
-    }
-
-    // Save Single Field Config From Main Admin Panel
-    function saveSingleConfig(field) {
-        playCuteSound();
-        let fieldName = "";
-
-        if (field === 'title') {
-            shopConfig.title = document.getElementById('adminShopTitle').value.trim() || shopConfig.title;
-            fieldName = "ชื่อร้านค้า";
-        } else if (field === 'desc') {
-            shopConfig.desc = document.getElementById('adminShopDesc').value.trim() || shopConfig.desc;
-            fieldName = "รายละเอียดร้านค้า";
-        } else if (field === 'logo') {
-            shopConfig.logo = document.getElementById('adminLogoUrl').value.trim() || shopConfig.logo;
-            fieldName = "โลโก้ร้านค้า";
-        } else if (field === 'banner') {
-            shopConfig.banner = document.getElementById('adminBannerUrl').value.trim() || shopConfig.banner;
-            fieldName = "แบนเนอร์ร้านค้า";
-        } else if (field === 'music') {
-            shopConfig.music = document.getElementById('adminMusicUrl').value.trim() || shopConfig.music;
-            fieldName = "เพลง BGM";
-        }
-
-        localStorage.setItem('miori_config', JSON.stringify(shopConfig));
-        applyConfigToUI();
-        showToast(`บันทึก ${fieldName} เรียบร้อยแล้วค่ะ`);
     }
 
     let isPlaying = false;
@@ -847,13 +836,18 @@
         const listContainer = document.getElementById('reviewsList');
         listContainer.innerHTML = '';
 
-        const visibleReviews = reviewsData.filter(r => r.approved && !r.hidden);
+        // ถ้าไม่ใช่ Admin ให้กรองเฉพาะอันที่ Approve แล้ว และไม่ซ่อน
+        const displayReviews = isAdminLoggedIn 
+            ? reviewsData 
+            : reviewsData.filter(r => r.approved && !r.hidden);
 
-        if (visibleReviews.length > 0) {
-            const totalScore = visibleReviews.reduce((sum, r) => sum + Number(r.score), 0);
-            const avg = (totalScore / visibleReviews.length).toFixed(1);
+        const approvedReviews = reviewsData.filter(r => r.approved && !r.hidden);
+
+        if (approvedReviews.length > 0) {
+            const totalScore = approvedReviews.reduce((sum, r) => sum + Number(r.score), 0);
+            const avg = (totalScore / approvedReviews.length).toFixed(1);
             document.getElementById('avgRatingScore').textContent = avg;
-            document.getElementById('totalReviewsCount').textContent = visibleReviews.length;
+            document.getElementById('totalReviewsCount').textContent = approvedReviews.length;
 
             let starsHtml = '';
             const fullStars = Math.floor(avg);
@@ -867,7 +861,7 @@
             document.getElementById('totalReviewsCount').textContent = "0";
         }
 
-        if (visibleReviews.length === 0) {
+        if (displayReviews.length === 0) {
             listContainer.innerHTML = `
                 <div class="text-center py-8 text-gray-400 bg-white/60 rounded-3xl border border-rose-100">
                     <i class="far fa-comments text-3xl mb-2 text-rose-300"></i>
@@ -877,7 +871,7 @@
             return;
         }
 
-        visibleReviews.forEach(rev => {
+        displayReviews.forEach(rev => {
             let starsHtml = '';
             for (let i = 0; i < 5; i++) {
                 if (i < rev.score) starsHtml += '<i class="fas fa-star text-amber-300 text-xs"></i>';
@@ -885,7 +879,38 @@
             }
 
             const item = document.createElement('div');
-            item.className = "bg-white/90 border-2 border-rose-100 p-4 rounded-3xl shadow-xs transition hover:shadow-sm hover:border-rose-200 relative group";
+            item.className = `bg-white/90 border-2 ${!rev.approved ? 'border-amber-300 bg-amber-50/40' : rev.hidden ? 'border-gray-200 bg-gray-50/60 opacity-60' : 'border-rose-100'} p-4 rounded-3xl shadow-xs transition hover:shadow-sm relative group`;
+            
+            // แถบควบคุมสำหรับแอดมินในการ์ดรีวิวแต่ละอัน
+            let adminControlsHtml = '';
+            if (isAdminLoggedIn) {
+                adminControlsHtml = `
+                    <div class="mt-3 pt-3 border-t border-rose-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+                        <div class="flex items-center gap-1.5">
+                            ${!rev.approved 
+                                ? '<span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full text-[10px] font-bold"><i class="fas fa-clock"></i> รออนุมัติ</span>' 
+                                : rev.hidden 
+                                    ? '<span class="bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full text-[10px] font-bold"><i class="fas fa-eye-slash"></i> ซ่อนอยู่</span>' 
+                                    : '<span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-[10px] font-bold"><i class="fas fa-check-circle"></i> อนุมัติแล้ว</span>'}
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            ${!rev.approved ? `
+                                <button onclick="approveReview(${rev.id})" class="px-2.5 py-1 bg-emerald-400 hover:bg-emerald-500 text-white rounded-lg font-bold text-[11px] transition flex items-center gap-1 shadow-xs">
+                                    <i class="fas fa-check"></i> อนุมัติ
+                                </button>
+                            ` : `
+                                <button onclick="toggleHideReview(${rev.id})" class="px-2.5 py-1 ${rev.hidden ? 'bg-emerald-400 hover:bg-emerald-500' : 'bg-amber-400 hover:bg-amber-500'} text-white rounded-lg font-bold text-[11px] transition flex items-center gap-1 shadow-xs">
+                                    <i class="fas ${rev.hidden ? 'fa-eye' : 'fa-eye-slash'}"></i> ${rev.hidden ? 'แสดง' : 'ซ่อน'}
+                                </button>
+                            `}
+                            <button onclick="deleteReview(${rev.id})" class="px-2.5 py-1 bg-rose-400 hover:bg-rose-500 text-white rounded-lg font-bold text-[11px] transition flex items-center gap-1 shadow-xs">
+                                <i class="fas fa-trash"></i> ลบ
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
             item.innerHTML = `
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center space-x-2.5">
@@ -898,6 +923,7 @@
                 </div>
                 <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-light pl-1">${escapeHtml(rev.comment)}</p>
                 <span class="block text-[10px] text-rose-300 text-right mt-2 font-mono">${rev.date}</span>
+                ${adminControlsHtml}
             `;
             listContainer.appendChild(item);
         });
@@ -911,13 +937,12 @@
 
         if (!name || !comment) return;
 
-        // เมื่อลูกค้าส่งรีวิว ค่า approved จะเป็น false เพื่อรอแอดมินอนุมัติก่อน
         const newRev = {
             id: Date.now(),
             name: name,
             score: score,
             comment: comment,
-            approved: false, // รอแอดมินกดอนุมัติ
+            approved: false, // ลูกค้าส่งมารออนุมัติก่อน
             hidden: false,
             date: new Date().toISOString().split('T')[0]
         };
@@ -929,44 +954,7 @@
         document.getElementById('revName').value = '';
         document.getElementById('revComment').value = '';
         toggleReviewForm();
-        showToast("ส่งรีวิวเรียบร้อยแล้ว! รีวิวของคุณจะแสดงผลหลังจากแอดมินตรวจสอบอนุมัติค่ะ");
-    }
-
-    function renderAdminReviewsList() {
-        const container = document.getElementById('adminReviewsList');
-        container.innerHTML = '';
-
-        reviewsData.forEach(rev => {
-            const card = document.createElement('div');
-            card.className = `p-3 rounded-2xl border ${!rev.approved ? 'bg-amber-50/70 border-amber-200' : rev.hidden ? 'bg-gray-50 border-gray-200 opacity-60' : 'bg-rose-50/50 border-rose-100'} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs`;
-            card.innerHTML = `
-                <div class="flex-1">
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="font-bold text-gray-700">${escapeHtml(rev.name)}</span>
-                        <span class="text-amber-400 font-semibold flex items-center gap-1"><i class="fas fa-star text-xs"></i> ${rev.score}/5</span>
-                        <span class="text-[10px] text-gray-400">(${rev.date})</span>
-                        ${!rev.approved ? '<span class="bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded text-[10px] font-bold">รอแอดมินอนุมัติ</span>' : rev.hidden ? '<span class="bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded text-[10px]">ซ่อนอยู่</span>' : '<span class="bg-emerald-100 text-emerald-600 px-1.5 py-0.5 rounded text-[10px]">อนุมัติแล้ว (แสดงบนเว็บ)</span>'}
-                    </div>
-                    <p class="text-gray-500">${escapeHtml(rev.comment)}</p>
-                </div>
-                <div class="flex items-center space-x-2 shrink-0">
-                    ${!rev.approved ? `
-                        <button onclick="approveReview(${rev.id})" class="px-3 py-1 bg-emerald-400 hover:bg-emerald-500 text-white rounded-xl font-bold transition flex items-center gap-1 shadow-xs">
-                            <i class="fas fa-check text-[10px]"></i> อนุมัติ
-                        </button>
-                    ` : `
-                        <button onclick="toggleHideReview(${rev.id})" class="px-3 py-1 ${rev.hidden ? 'bg-emerald-400 hover:bg-emerald-500' : 'bg-amber-400 hover:bg-amber-500'} text-white rounded-xl font-bold transition flex items-center gap-1 shadow-xs">
-                            <i class="fas ${rev.hidden ? 'fa-eye' : 'fa-eye-slash'} text-[10px]"></i>
-                            ${rev.hidden ? 'แสดง' : 'ซ่อน'}
-                        </button>
-                    `}
-                    <button onclick="deleteReview(${rev.id})" class="px-3 py-1 bg-rose-400 hover:bg-rose-500 text-white rounded-xl font-bold transition flex items-center gap-1 shadow-xs">
-                        <i class="fas fa-trash text-[10px]"></i> ลบ
-                    </button>
-                </div>
-            `;
-            container.appendChild(card);
-        });
+        showToast("ส่งรีวิวเรียบร้อยแล้ว! รีวิวของคุณจะแสดงผลหลังจากแอดมินอนุมัติค่ะ");
     }
 
     function approveReview(id) {
@@ -975,57 +963,9 @@
         if (rev) {
             rev.approved = true;
             saveReviewsToStorage();
-            renderAdminReviewsList();
             renderCustomerReviews();
             showToast("อนุมัติรีวิวเรียบร้อยแล้วค่ะ");
         }
-    }
-
-    function switchAdminTab(tab) {
-        playCuteSound();
-        if (tab === 'config') {
-            document.getElementById('adminTabConfig').classList.remove('hidden');
-            document.getElementById('adminTabReviews').classList.add('hidden');
-            document.getElementById('tabConfigBtn').className = "pb-2 text-rose-400 border-b-2 border-rose-300 font-bold";
-            document.getElementById('tabReviewsBtn').className = "pb-2 text-gray-400 font-bold";
-        } else {
-            document.getElementById('adminTabConfig').classList.add('hidden');
-            document.getElementById('adminTabReviews').classList.remove('hidden');
-            document.getElementById('tabConfigBtn').className = "pb-2 text-gray-400 font-bold";
-            document.getElementById('tabReviewsBtn').className = "pb-2 text-rose-400 border-b-2 border-rose-300 font-bold";
-            renderAdminReviewsList();
-        }
-    }
-
-    function renderAdminReviewsList() {
-        const container = document.getElementById('adminReviewsList');
-        container.innerHTML = '';
-
-        reviewsData.forEach(rev => {
-            const card = document.createElement('div');
-            card.className = `p-3 rounded-2xl border ${rev.hidden ? 'bg-gray-50 border-gray-200 opacity-60' : 'bg-rose-50/50 border-rose-100'} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs`;
-            card.innerHTML = `
-                <div class="flex-1">
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="font-bold text-gray-700">${escapeHtml(rev.name)}</span>
-                        <span class="text-amber-400 font-semibold flex items-center gap-1"><i class="fas fa-star text-xs"></i> ${rev.score}/5</span>
-                        <span class="text-[10px] text-gray-400">(${rev.date})</span>
-                        ${rev.hidden ? '<span class="bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded text-[10px]">ซ่อนอยู่</span>' : '<span class="bg-rose-100 text-rose-500 px-1.5 py-0.5 rounded text-[10px]">แสดงอยู่</span>'}
-                    </div>
-                    <p class="text-gray-500">${escapeHtml(rev.comment)}</p>
-                </div>
-                <div class="flex items-center space-x-2 shrink-0">
-                    <button onclick="toggleHideReview(${rev.id})" class="px-3 py-1 ${rev.hidden ? 'bg-emerald-400 hover:bg-emerald-500' : 'bg-amber-400 hover:bg-amber-500'} text-white rounded-xl font-bold transition flex items-center gap-1 shadow-xs">
-                        <i class="fas ${rev.hidden ? 'fa-eye' : 'fa-eye-slash'} text-[10px]"></i>
-                        ${rev.hidden ? 'แสดง' : 'ซ่อน'}
-                    </button>
-                    <button onclick="deleteReview(${rev.id})" class="px-3 py-1 bg-rose-400 hover:bg-rose-500 text-white rounded-xl font-bold transition flex items-center gap-1 shadow-xs">
-                        <i class="fas fa-trash text-[10px]"></i> ลบ
-                    </button>
-                </div>
-            `;
-            container.appendChild(card);
-        });
     }
 
     function toggleHideReview(id) {
@@ -1034,7 +974,6 @@
         if (rev) {
             rev.hidden = !rev.hidden;
             saveReviewsToStorage();
-            renderAdminReviewsList();
             renderCustomerReviews();
         }
     }
@@ -1043,12 +982,17 @@
         playCuteSound();
         reviewsData = reviewsData.filter(r => r.id !== id);
         saveReviewsToStorage();
-        renderAdminReviewsList();
         renderCustomerReviews();
+        showToast("ลบรีวิวเรียบร้อยแล้วค่ะ");
     }
 
     function saveReviewsToStorage() {
         localStorage.setItem('miori_reviews', JSON.stringify(reviewsData));
+    }
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text.toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     }
 
     function showToast(message) {
