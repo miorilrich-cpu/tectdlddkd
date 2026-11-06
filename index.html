@@ -483,6 +483,87 @@
                 <div class="flex items-center space-x-2">
                     <i class="fas fa-sliders text-rose-400 text-lg"></i>
                     <h2 class="font-mali font-bold text-lg text-rose-400">ระบบหลังบ้าน (Admin Dashboard)</h2>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="adminLogout()" class="px-3 py-1 bg-rose-100 hover:bg-rose-200 text-rose-500 text-xs font-bold rounded-full transition">
+                        <i class="fas fa-sign-out-alt"></i> ออกจากระบบ
+                    </button>
+                    <button onclick="toggleAdminPanel()" class="w-7 h-7 rounded-full bg-rose-100 text-rose-400 hover:bg-rose-200 flex items-center justify-center transition text-xs">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-5 overflow-y-auto space-y-5">
+                <div class="flex border-b border-rose-100 gap-4 text-xs font-bold">
+                    <button id="tabConfigBtn" onclick="switchAdminTab('config')" class="pb-2 text-rose-400 border-b-2 border-rose-300">ตั้งค่าร้านค้า & รูปภาพ</button>
+                    <button id="tabReviewsBtn" onclick="switchAdminTab('reviews')" class="pb-2 text-gray-400">จัดการรีวิว (อนุมัติ/ซ่อน/ลบ)</button>
+                </div>
+
+                <!-- Tab 1: Configuration -->
+                <div id="adminTabConfig" class="space-y-4 text-xs">
+                    <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                        <div class="flex-1 w-full">
+                            <label class="block font-bold text-gray-600 mb-1">ชื่อร้านค้า (Shop Name)</label>
+                            <input type="text" id="adminShopTitle" class="w-full px-3 py-2 rounded-xl border border-rose-200 focus:outline-none focus:border-rose-400">
+                        </div>
+                        <button onclick="saveSingleConfig('title')" class="sm:mt-5 w-full sm:w-auto px-4 py-2 bg-rose-400 hover:bg-rose-500 text-white font-bold rounded-xl transition shrink-0 flex items-center justify-center gap-1">
+                            <i class="fas fa-save"></i> บันทึก
+                        </button>
+                    </div>
+
+                    <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                        <div class="flex-1 w-full">
+                            <label class="block font-bold text-gray-600 mb-1">รายละเอียดร้านค้า (Description)</label>
+                            <textarea id="adminShopDesc" rows="2" class="w-full px-3 py-2 rounded-xl border border-rose-200 focus:outline-none focus:border-rose-400"></textarea>
+                        </div>
+                        <button onclick="saveSingleConfig('desc')" class="sm:mt-5 w-full sm:w-auto px-4 py-2 bg-rose-400 hover:bg-rose-500 text-white font-bold rounded-xl transition shrink-0 flex items-center justify-center gap-1">
+                            <i class="fas fa-save"></i> บันทึก
+                        </button>
+                    </div>
+
+                    <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                        <div class="flex-1 w-full">
+                            <label class="block font-bold text-gray-600 mb-1">URL โลโก้ (Logo Image)</label>
+                            <input type="text" id="adminLogoUrl" class="w-full px-3 py-2 rounded-xl border border-rose-200 focus:outline-none focus:border-rose-400">
+                        </div>
+                        <button onclick="saveSingleConfig('logo')" class="sm:mt-5 w-full sm:w-auto px-4 py-2 bg-rose-400 hover:bg-rose-500 text-white font-bold rounded-xl transition shrink-0 flex items-center justify-center gap-1">
+                            <i class="fas fa-save"></i> บันทึก
+                        </button>
+                    </div>
+
+                    <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                        <div class="flex-1 w-full">
+                            <label class="block font-bold text-gray-600 mb-1">URL แบนเนอร์ (1122*495 Banner)</label>
+                            <input type="text" id="adminBannerUrl" class="w-full px-3 py-2 rounded-xl border border-rose-200 focus:outline-none focus:border-rose-400">
+                        </div>
+                        <button onclick="saveSingleConfig('banner')" class="sm:mt-5 w-full sm:w-auto px-4 py-2 bg-rose-400 hover:bg-rose-500 text-white font-bold rounded-xl transition shrink-0 flex items-center justify-center gap-1">
+                            <i class="fas fa-save"></i> บันทึก
+                        </button>
+                    </div>
+
+                    <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                        <div class="flex-1 w-full">
+                            <label class="block font-bold text-gray-600 mb-1">URL เพลง BGM (MP3 Link)</label>
+                            <input type="text" id="adminMusicUrl" class="w-full px-3 py-2 rounded-xl border border-rose-200 focus:outline-none focus:border-rose-400">
+                        </div>
+                        <button onclick="saveSingleConfig('music')" class="sm:mt-5 w-full sm:w-auto px-4 py-2 bg-rose-400 hover:bg-rose-500 text-white font-bold rounded-xl transition shrink-0 flex items-center justify-center gap-1">
+                            <i class="fas fa-save"></i> บันทึก
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Reviews Admin -->
+                <div id="adminTabReviews" class="hidden space-y-3">
+                    <p class="text-xs text-gray-400">แอดมินสามารถกดอนุมัติ ซ่อน หรือลบความคิดเห็นของลูกค้าได้ทันที</p>
+                    <div id="adminReviewsList" class="space-y-2.5">
+                        <!-- Admin items injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL POPUP: ADMIN LOGIN -->
     <div id="adminLoginModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-sm rounded-3xl shadow-xl border-2 border-rose-100 overflow-hidden">
@@ -520,6 +601,14 @@
             toggleAdminPanel();
         } else {
             document.getElementById('adminLoginModal').classList.remove('hidden');
+        }
+    }
+
+    function toggleAdminPanel() {
+        const modal = document.getElementById('adminModal');
+        modal.classList.toggle('hidden');
+        if (!modal.classList.contains('hidden')) {
+            renderAdminReviewsList();
         }
     }
 
