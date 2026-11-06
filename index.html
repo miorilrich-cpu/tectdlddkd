@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>miori shop - Baby Rich Credit & Reviews</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    brand: {
+                        pink: '#fca5a5',
+                        lightpink: '#fff5f7',
+                        softpink: '#fde8ed',
+                        darkpink: '#f472b6',
+                        deep: '#ec4899',
+                        bg: '#faf5f7'
+                    }
+                },
+                fontFamily: {
+                    kanit: ['Kanit', 'sans-serif'],
+                    mali: ['Mali', 'cursive']
+                }
+            }
+        }
+    }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            /* โทนพาสเทลละมุนตา Soft Pastel Gradient Background */
+            background: radial-gradient(circle at 10% 20%, #fff0f3 0%, #faf5f7 50%, #fde8ed 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating background shapes */
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(254, 205, 211, 0.3);
+            animation: floatBubble 8s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes floatBubble {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        /* Cute Patterned Washi Tape - Pastel Soft Pink */
+        .washi-tape {
+            position: absolute;
+            height: 24px;
+            width: 95px;
+            background: repeating-linear-gradient(
+                -45deg,
+                rgba(253, 226, 233, 0.8),
+                rgba(253, 226, 233, 0.8) 10px,
+                rgba(255, 255, 255, 0.8) 10px,
+                rgba(255, 255, 255, 0.8) 20px
+            );
+            box-shadow: 0 3px 6px rgba(244, 114, 182, 0.08);
+            backdrop-filter: blur(2px);
+            z-index: 25;
+            border-left: 3px dashed rgba(255, 255, 255, 0.9);
+            border-right: 3px dashed rgba(255, 255, 255, 0.9);
+        }
+
+        .washi-top-right {
+            top: -12px;
+            right: -12px;
+            transform: rotate(14deg);
+        }
+
+        .washi-top-left {
+            top: -14px;
+            left: -18px;
+            transform: rotate(-16deg);
+        }
+
+        .washi-bottom-left {
+            bottom: -10px;
+            left: -12px;
+            transform: rotate(22deg);
+        }
+
+        /* Interactive Polaroid Frame */
+        .polaroid {
+            background: #ffffff;
+            padding: 12px 12px 26px 12px;
+            box-shadow: 0 12px 30px -10px rgba(244, 114, 182, 0.15), 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid #fff0f3;
+            position: relative;
+        }
+
+        .polaroid:hover {
+            transform: translateY(-6px) rotate(2deg) scale(1.03);
+            box-shadow: 0 16px 35px -8px rgba(244, 114, 182, 0.22);
+        }
+
+        /* Claymorphism Main Container - Soft Tone */
+        .clay-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: 2px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 0 20px 45px -15px rgba(251, 207, 217, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.9);
+        }
+
+        /* Interactive Shimmer Button */
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-shimmer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                60deg,
+                transparent,
+                rgba(255, 255, 255, 0.5),
+                transparent
+            );
+            transform: rotate(30deg);
+            animation: shimmerEffect 4s infinite;
+        }
+
+        @keyframes shimmerEffect {
+            0% { transform: translate(-100%, -100%) rotate(30deg); }
+            20%, 100% { transform: translate(100%, 100%) rotate(30deg); }
+        }
+
+        .page-view {
+            animation: fadeInScale 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.98) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Custom Scrollbar - Soft Pastel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff0f3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fbcfe8;
+            border-radius: 10px;
+            border: 2px solid #fff0f3;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f472b6;
+        }
+    </style>
+</head>
+<body class="text-gray-600 min-h-screen flex flex-col items-center justify-between p-3 sm:p-8 relative pb-16">
+
+    <!-- Ambient Floating Cute Ornaments -->
+    <div class="bubble w-40 h-40 top-10 left-5" style="animation-delay: 0s;"></div>
+    <div class="bubble w-56 h-56 bottom-20 right-5" style="animation-delay: -3s;"></div>
+    <div class="bubble w-28 h-28 top-1/2 left-10" style="animation-delay: -5s;"></div>
+
+    <!-- Top Floating Music & Control Bar -->
+    <div class="fixed top-4 right-4 sm:top-6 sm:right-6 z-40 bg-white/90 backdrop-blur-md border-2 border-rose-100 shadow-md rounded-full px-4 py-2 flex items-center space-x-3 text-xs hover:scale-105 transition-all">
+        <button id="musicToggleBtn" onclick="toggleMusic()" class="w-8 h-8 rounded-full bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white flex items-center justify-center transition-all shadow-sm">
+            <i id="musicIcon" class="fas fa-music text-xs"></i>
+        </button>
+        <div class="hidden sm:block">
+            <p class="font-bold text-rose-400 text-[11px] leading-none flex items-center gap-1">
+                <i class="fas fa-headphones text-[10px]"></i> BGM Player
+            </p>
+            <p id="musicStatus" class="text-[10px] text-gray-400 leading-tight">กดเพื่อเล่นเพลง</p>
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Admin Shortcut Toggle -->
+        <button onclick="playCuteSound(); toggleAdminPanel()" class="ml-1 bg-rose-50 hover:bg-rose-100 text-rose-400 px-3 py-1.5 rounded-full text-xs font-semibold transition border border-rose-200 flex items-center gap-1.5 shadow-xs">
+            <i class="fas fa-cog text-rose-300 text-[10px]"></i> หลังบ้าน
+        </button>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="w-full max-w-xl clay-card rounded-[2.5rem] p-5 sm:p-8 relative mt-3 sm:mt-6 z-10">
+
+        <!-- PAGE 1: HOME PAGE VIEW -->
+        <div id="homePageView" class="page-view space-y-7">
+            <!-- 1. Banner Section (1122*495 ratio block) -->
+            <section class="relative w-full group">
+                <div class="washi-tape washi-top-right"></div>
+                <div class="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur border border-rose-200 text-rose-400 px-3 py-1 rounded-full text-[10px] font-bold shadow-sm flex items-center gap-1 transform -rotate-3 group-hover:rotate-0 transition">
+                    <i class="fas fa-image text-rose-300"></i> Banner 1122x495
+                </div>
+                <div class="relative w-full overflow-hidden rounded-3xl shadow-sm border-2 border-rose-100 aspect-[1122/495] bg-rose-50/50">
+                    <img id="mainBannerImg" src="https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+1122*495+(miori+shop)" alt="Banner 1122*495" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" onerror="this.src='https://placehold.co/1122x495/ffe4e6/ffffff?text=Banner+Demo+1122x495'">
+                </div>
+            </section>
+
+            <!-- 2. Profile & Details Section -->
+            <section class="flex flex-col sm:flex-row items-center sm:items-start gap-6 py-1 relative">
+                <!-- Left: Polaroid Logo Frame -->
+                <div class="relative flex-shrink-0">
+                    <div class="washi-tape washi-top-left"></div>
+                    <div class="polaroid rounded-2xl transform -rotate-3 hover:rotate-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 bg-rose-50 rounded-xl border border-rose-100 overflow-hidden flex items-center justify-center relative group">
+                            <img id="logoImg" src="https://placehold.co/200x200/fbcfe8/ffffff?text=Logo" alt="Shop Logo" class="w-full h-full object-cover group-hover:scale-110 transition">
+                        </div>
+                        <p id="polaroidShopName" class="text-center font-bold text-rose-400 text-xs mt-2 tracking-wide flex items-center justify-center gap-1">
+                            <i class="fas fa-heart text-[9px] text-rose-300"></i> Baby Rich
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Title and Description -->
+                <div class="flex-1 text-center sm:text-left space-y-3">
+                    <div class="flex flex-col sm:flex-row items-center gap-2 justify-center sm:justify-start">
+                        <h1 id="shopTitle" class="font-bold text-2xl sm:text-3xl text-rose-400 tracking-wide">Baby Rich</h1>
+                        <span class="bg-gradient-to-r from-rose-300 to-pink-300 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full font-kanit shadow-xs flex items-center gap-1">
+                            <i class="fas fa-check-circle text-[9px]"></i> Verified Shop
+                        </span>
+                    </div>
+                    <p id="shopDesc" class="text-xs sm:text-sm text-gray-500 leading-relaxed font-light">
+                        ยินดีต้อนรับสู่ miori shop ศูนย์รวมสินค้าลิขสิทธิ์แท้ น่ารัก สดใส บริการด้วยใจ ตอบไว ส่งของทุกวันค่ะ สอบถามขอดูรูปเพิ่มเติมได้เลยน้า
+                    </p>
+                    <div class="flex flex-wrap justify-center sm:justify-start gap-2 text-[11px] pt-1">
+                        <span class="bg-white/90 text-rose-400 border border-rose-200 px-3 py-1 rounded-full shadow-xs flex items-center gap-1 font-medium">
+                            <i class="fas fa-shield-halved text-rose-300"></i> ชำระเงินปลอดภัย 100%
+                        </span>
+                        <span class="bg-white/90 text-rose-400 border border-rose-200 px-3 py-1 rounded-full shadow-xs flex items-center gap-1 font-medium">
+                            <i class="fas fa-certificate text-rose-300"></i> เครดิตแน่นส่งจริง
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Check Credit Button -->
+            <section class="text-center py-3 relative">
+                <div class="inline-block relative w-full">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20 bg-rose-50 text-rose-400 border border-rose-200 px-3 py-0.5 rounded-full text-[10px] font-bold shadow-xs flex items-center gap-1">
+                        Customer Trust & Review <i class="fas fa-ribbon text-rose-300 text-[9px]"></i>
+                    </div>
+                    <button onclick="playCuteSound(); switchPage('credit')" class="btn-shimmer w-full py-4 px-6 bg-gradient-to-r from-white via-rose-50/70 to-white hover:from-rose-50 hover:to-rose-100/50 text-rose-400 font-bold text-base sm:text-lg rounded-2xl border-2 border-dashed border-rose-200 shadow-sm hover:shadow-md transform hover:-translate-y-1 transition-all flex items-center justify-between group">
+                        <div class="w-9 h-9 rounded-xl bg-rose-100/70 border border-rose-200 flex items-center justify-center text-rose-400 group-hover:scale-110 group-hover:rotate-12 transition-transform">
+                            <i class="fa fa-award text-base"></i>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="tracking-wider font-kanit font-bold text-rose-400 text-lg">Check Credit</span>
+                            <span class="text-xs font-normal text-rose-300 font-mali">(ดูรีวิวร้านค้า)</span>
+                        </div>
+                        <div class="w-9 h-9 rounded-xl bg-rose-100/70 border border-rose-200 flex items-center justify-center text-rose-400 group-hover:scale-110 group-hover:-rotate-12 transition-transform">
+                            <i class="fas fa-chevron-right text-xs"></i>
+                        </div>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 4. Twin Display Cards -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="relative bg-white/80 p-4 rounded-3xl border-2 border-rose-100 shadow-xs hover:shadow-sm transition duration-300 group hover:-translate-y-1">
+                    <div class="washi-tape washi-bottom-left"></div>
+                    <div class="h-32 bg-rose-50/60 rounded-2xl mb-3 flex items-center justify-center overflow-hidden border border-rose-100 relative">
+                        <img src="https://placehold.co/400x300/fff0f3/f472b6?text=การันตีส่งจริง" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Credit Preview 1">
+                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-rose-400 flex items-center gap-1 border border-rose-100">
+                            <i class="fas fa-truck-fast"></i> Fast Delivery
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-rose-400 text-xs mb-1 flex items-center">
+                        <i class="fas fa-box-open text-rose-300 mr-1.5"></i> จัดส่งรวดเร็วทุกวัน
+                    </h3>
+                    <p class="text-[11px] text-gray-400 font-light leading-relaxed">แพ็คกันกระแทกแน่นหนา ได้รับสินค้ารวดเร็วทันใจ</p>
+                </div>
+
+                <div class="relative bg-white/80 p-4 rounded-3xl border-2 border-rose-100 shadow-xs hover:shadow-sm transition duration-300 group hover:-translate-y-1">
+                    <div class="washi-tape washi-top-right"></div>
+                    <div class="h-32 bg-rose-50/60 rounded-2xl mb-3 flex items-center justify-center overflow-hidden border border-rose-100 relative">
+                        <img src="https://placehold.co/400x300/fff0f3/f472b6?text=สินค้าแท้+100%25" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Credit Preview 2">
+                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur rounded-full px-2 py-0.5 text-[9px] font-bold text-rose-400 flex items-center gap-1 border border-rose-100">
+                            <i class="fas fa-badge-check"></i> 100% Authentic
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-rose-400 text-xs mb-1 flex items-center">
+                        <i class="fas fa-heart-circle-check text-rose-300 mr-1.5"></i> สินค้าแท้มีรีวิวแน่น
+                    </h3>
+                    <p class="text-[11px] text-gray-400 font-light leading-relaxed">มีเครดิตการขายจริง ติชมรีวิวจากลูกค้าแน่นๆ</p>
+                </div>
+            </section>
+
+            <!-- 5. Contact Us Section -->
+            <section class="text-center border-t-2 border-rose-100/70 pt-7 pb-2">
+                <h2 id="contactTitleText" class="font-bold text-xl text-rose-400 mb-6 flex items-center justify-center gap-2">
+                    <i class="fas fa-envelope-open-text text-rose-300 text-lg"></i> Contact us
+                </h2>
+                <div class="flex justify-center items-center gap-6 sm:gap-8 px-2">
+                    <a href="#" onclick="playCuteSound()" class="group flex flex-col items-center gap-2">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-rose-100 shadow-xs hover:shadow-md hover:border-rose-300 hover:bg-rose-50/50 text-blue-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1.5 group-hover:scale-105">
+                            <i class="fab fa-facebook-f text-xl sm:text-2xl"></i>
+                        </div>
+                        <span class="font-bold text-[11px] sm:text-xs text-gray-500 group-hover:text-rose-400 transition-colors">Facebook</span>
+                    </a>
+                    <a href="#" onclick="playCuteSound()" class="group flex flex-col items-center gap-2">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-rose-100 shadow-xs hover:shadow-md hover:border-rose-300 hover:bg-rose-50/50 text-emerald-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1.5 group-hover:scale-105">
+                            <i class="fab fa-line text-2xl sm:text-3xl"></i>
+                        </div>
+                        <span class="font-bold text-[11px] sm:text-xs text-gray-500 group-hover:text-rose-400 transition-colors">Line</span>
+                    </a>
+                    <a href="#" onclick="playCuteSound()" class="group flex flex-col items-center gap-2">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-rose-100 shadow-xs hover:shadow-md hover:border-rose-300 hover:bg-rose-50/50 text-rose-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1.5 group-hover:scale-105">
+                            <i class="fab fa-instagram text-2xl sm:text-3xl"></i>
+                        </div>
+                        <span class="font-bold text-[11px] sm:text-xs text-gray-500 group-hover:text-rose-400 transition-colors">Instagram</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 2: CHECK CREDIT FULL PAGE VIEW -->
+        <div id="creditPageView" class="page-view hidden space-y-6">
+            <div class="flex items-center justify-between border-b-2 border-rose-100 pb-4">
+                <button onclick="playCuteSound(); switchPage('home')" class="px-4 py-2 bg-white hover:bg-rose-50 text-rose-400 font-bold text-xs rounded-full transition flex items-center gap-2 border-2 border-rose-100 shadow-xs hover:scale-105">
+                    <i class="fas fa-arrow-left text-[10px]"></i> ย้อนกลับหน้าหลัก
+                </button>
+            </div>
+
+            <div class="text-center py-2.5 bg-gradient-to-r from-rose-50 via-white to-rose-50 rounded-2xl border border-rose-200/80 shadow-xs">
+                <span class="font-bold text-base text-rose-400 tracking-wide flex items-center justify-center gap-2">
+                    <i class="fas fa-star text-rose-300 text-xs"></i> Check Credit Review Board <i class="fas fa-star text-rose-300 text-xs"></i>
+                </span>
+            </div>
+
+            <div class="relative w-full rounded-3xl overflow-hidden shadow-xs border-2 border-rose-100 aspect-[1122/495] bg-rose-50/50">
+                <img id="creditBannerImg" src="https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+Check+Credit+1122*495" alt="Credit Banner 1122*495" class="w-full h-full object-cover">
+            </div>
+
+            <div class="bg-white/90 border-2 border-rose-100 rounded-3xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs relative overflow-hidden">
+                <div class="text-center sm:text-left">
+                    <div class="flex items-center justify-center sm:justify-start space-x-2">
+                        <span id="avgRatingScore" class="text-3xl font-bold text-rose-400 drop-shadow-xs">5.0</span>
+                        <div class="flex text-amber-300 text-base space-x-0.5" id="starRatingIcons">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-1">
+                        คะแนนเฉลี่ยความพึงพอใจ (<span id="totalReviewsCount" class="font-bold text-rose-400">0</span> รีวิวจากลูกค้าจริง)
+                    </p>
+                </div>
+                <button onclick="playCuteSound(); toggleReviewForm()" class="btn-shimmer w-full sm:w-auto px-5 py-2.5 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold text-xs sm:text-sm rounded-full shadow-xs transition flex items-center justify-center gap-2 border border-white/60">
+                    <i class="fas fa-pen"></i> เขียนรีวิวร้านค้า
+                </button>
+            </div>
+
+            <!-- Review Form -->
+            <div id="reviewFormContainer" class="hidden bg-white border-2 border-rose-100 rounded-3xl p-5 shadow-sm transition-all">
+                <h3 class="font-bold text-rose-400 mb-4 text-base flex items-center gap-2">
+                    <i class="fas fa-edit text-rose-300"></i> แสดงความคิดเห็น / ติชมร้านค้า
+                </h3>
+                <form onsubmit="submitCustomerReview(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1">ชื่อผู้รีวิว / ชื่อลูกค้า *</label>
+                            <input type="text" id="revName" required placeholder="เช่น คุณมินท์" class="w-full px-4 py-2 text-xs rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1">ให้คะแนนความพึงพอใจ *</label>
+                            <select id="revScore" class="w-full px-4 py-2 text-xs rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 transition font-kanit">
+                                <option value="5">5/5 ประทับใจมากที่สุด</option>
+                                <option value="4">4/5 ดีมาก</option>
+                                <option value="3">3/5 ปานกลาง</option>
+                                <option value="2">2/5 พอใช้</option>
+                                <option value="1">1/5 ต้องปรับปรุง</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 mb-1">ข้อความรีวิว / ติชม *</label>
+                        <textarea id="revComment" rows="3" required placeholder="แม่ค้าพูดจาน่ารักมาก ส่งของไว แพ็คดีสุดๆ..." class="w-full px-4 py-2 text-xs rounded-xl border-2 border-rose-100 focus:outline-none focus:border-rose-300 transition"></textarea>
+                    </div>
+                    <div class="flex justify-end gap-2 pt-1">
+                        <button type="button" onclick="toggleReviewForm()" class="px-4 py-1.5 text-xs text-gray-400 hover:text-gray-600 font-medium">ยกเลิก</button>
+                        <button type="submit" onclick="playCuteSound()" class="px-5 py-2 bg-rose-300 hover:bg-rose-400 text-white font-bold text-xs rounded-full shadow-xs transition flex items-center gap-1.5">
+                            <i class="fas fa-paper-plane text-[10px]"></i> ส่งรีวิว
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Reviews List Area -->
+            <div class="space-y-4 pt-2">
+                <h3 class="font-bold text-gray-600 text-base flex items-center justify-between">
+                    <span class="flex items-center gap-2"><i class="fas fa-comments text-rose-300"></i> รีวิวจากลูกค้าทั้งหมด</span>
+                    <span class="text-xs text-rose-300 font-normal">อัปเดตล่าสุดเรียลไทม์</span>
+                </h3>
+                <div id="reviewsList" class="space-y-3">
+                    <!-- Dynamic Items -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Copyright -->
+    <footer class="mt-8 text-center text-xs text-rose-300/80 font-light z-10">
+        &copy; 2026 miori shop - Baby Rich. All rights reserved.
+    </footer>
+
+    <!-- MODAL: ADMIN CONTROL PANEL -->
+    <div id="adminModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xl rounded-3xl shadow-xl border-2 border-rose-100 max-h-[90vh] flex flex-col overflow-hidden">
+            <div class="p-4 bg-rose-50 border-b border-rose-100 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-sliders text-rose-400 text-lg"></i>
+                    <h2 class="font-mali font-bold text-lg text-rose-400">ระบบหลังบ้าน (Admin Dashboard)</h2>
+                </div>
+                <button onclick="toggleAdminPanel()" class="w-8 h-8 rounded-full bg-rose-100 text-rose-400 hover:bg-rose-200 flex items-center justify-center transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="p-5 overflow-y-auto space-y-5">
+                <div class="flex border-b border-rose-100 gap-4 text-xs font-bold">
+                    <button id="tabConfigBtn" onclick="switchAdminTab('config')" class="pb-2 text-rose-400 border-b-2 border-rose-300 font-bold">
+                        <i class="fas fa-edit mr-1"></i> ตั้งค่าแยกตามจุด (Per Field)
+                    </button>
+                    <button id="tabReviewsBtn" onclick="switchAdminTab('reviews')" class="pb-2 text-gray-400 font-bold">
+                        <i class="fas fa-comments mr-1"></i> จัดการรีวิว
+                    </button>
+                </div>
+
+                <!-- Tab 1: Configuration (แก้ไขเป็นจุดๆ พาสเทล) -->
+                <div id="adminTabConfig" class="space-y-4 text-xs">
+                    <div class="bg-rose-50/60 p-2.5 rounded-xl border border-rose-100 text-[11px] text-rose-400 flex items-center gap-2">
+                        <i class="fas fa-info-circle text-rose-300 text-sm"></i>
+                        <span>แอดมินสามารถกด <b>"บันทึก"</b> ในจุดที่ต้องการแก้ไขเฉพาะรายการได้ทันทีค่ะ</span>
+                    </div>
+
+                    <!-- 1. ชื่อร้านค้า -->
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 shadow-xs space-y-2 hover:border-rose-200 transition">
+                        <label class="block font-bold text-gray-600 flex items-center gap-1.5">
+                            <i class="fas fa-store text-rose-300"></i> 1. ชื่อร้านค้า (Shop Title)
+                        </label>
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <input type="text" id="adminShopTitle" class="flex-1 px-3 py-2 rounded-xl border border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
+                            <button onclick="saveSingleConfig('title')" class="px-4 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 shrink-0">
+                                <i class="fas fa-save"></i> บันทึกชื่อร้าน
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. รายละเอียดร้านค้า -->
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 shadow-xs space-y-2 hover:border-rose-200 transition">
+                        <label class="block font-bold text-gray-600 flex items-center gap-1.5">
+                            <i class="fas fa-align-left text-rose-300"></i> 2. รายละเอียดร้านค้า (Description)
+                        </label>
+                        <textarea id="adminShopDesc" rows="2" class="w-full px-3 py-2 rounded-xl border border-rose-100 focus:outline-none focus:border-rose-300 text-xs"></textarea>
+                        <div class="flex justify-end">
+                            <button onclick="saveSingleConfig('desc')" class="px-4 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
+                                <i class="fas fa-save"></i> บันทึกรายละเอียด
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. URL โลโก้ -->
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 shadow-xs space-y-2 hover:border-rose-200 transition">
+                        <label class="block font-bold text-gray-600 flex items-center gap-1.5">
+                            <i class="fas fa-image text-rose-300"></i> 3. URL โลโก้ (Logo Image URL)
+                        </label>
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <input type="text" id="adminLogoUrl" class="flex-1 px-3 py-2 rounded-xl border border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
+                            <button onclick="saveSingleConfig('logo')" class="px-4 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 shrink-0">
+                                <i class="fas fa-save"></i> บันทึกโลโก้
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 4. URL แบนเนอร์ -->
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 shadow-xs space-y-2 hover:border-rose-200 transition">
+                        <label class="block font-bold text-gray-600 flex items-center gap-1.5">
+                            <i class="fas fa-panorama text-rose-300"></i> 4. URL แบนเนอร์ (1122*495 Banner URL)
+                        </label>
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <input type="text" id="adminBannerUrl" class="flex-1 px-3 py-2 rounded-xl border border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
+                            <button onclick="saveSingleConfig('banner')" class="px-4 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 shrink-0">
+                                <i class="fas fa-save"></i> บันทึกแบนเนอร์
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 5. URL เพลง BGM -->
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-100 shadow-xs space-y-2 hover:border-rose-200 transition">
+                        <label class="block font-bold text-gray-600 flex items-center gap-1.5">
+                            <i class="fas fa-music text-rose-300"></i> 5. URL เพลงพื้นหลัง (BGM MP3 Link)
+                        </label>
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <input type="text" id="adminMusicUrl" class="flex-1 px-3 py-2 rounded-xl border border-rose-100 focus:outline-none focus:border-rose-300 text-xs">
+                            <button onclick="saveSingleConfig('music')" class="px-4 py-2 bg-gradient-to-r from-rose-300 to-pink-300 hover:from-rose-400 hover:to-pink-400 text-white font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 shrink-0">
+                                <i class="fas fa-save"></i> บันทึกเพลง
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Reviews Admin -->
+                <div id="adminTabReviews" class="hidden space-y-3">
+                    <p class="text-xs text-gray-400">แอดมินสามารถกดยอมรับ ซ่อน หรือลบความคิดเห็นของลูกค้าได้ทันที</p>
+                    <div id="adminReviewsList" class="space-y-2.5">
+                        <!-- Admin items injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+    // Web Audio Synthesizer for Cute Sound Effect
+    function playCuteSound() {
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
+            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1); // A5
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.15);
+        } catch (e) {}
+    }
+
+    // Initial Data Storage
+    let initialReviews = [
+        { id: 1, name: "คุณเปียโน", score: 5, comment: "ได้รับของแล้วค่าน่ารักมากกก แพ็คมาอย่างดีไม่มีรอยบุบเลย แม่ค้าบริการดี ตอบแชทไวสุดๆ", approved: true, hidden: false, date: "2026-11-01" },
+        { id: 2, name: "คุณเนย", score: 5, comment: "ร้านนี้เครดิตดีจริงค่ะ ส่งของไว สินค้าตรงปก 100% ไว้อุดหนุนอีกแน่นอนน้า", approved: true, hidden: false, date: "2026-11-03" },
+        { id: 3, name: "คุณมายด์", score: 4, comment: "น่ารักมากค่ะ ขนส่งบริการดี ของถึงตามกำหนดเลย", approved: true, hidden: false, date: "2026-11-05" }
+    ];
+
+    let reviewsData = JSON.parse(localStorage.getItem('miori_reviews')) || initialReviews;
+    let shopConfig = JSON.parse(localStorage.getItem('miori_config')) || {
+        title: "Baby Rich",
+        desc: "ยินดีต้อนรับสู่ miori shop ศูนย์รวมสินค้าลิขสิทธิ์แท้ น่ารัก สดใส บริการด้วยใจ ตอบไว ส่งของทุกวันค่ะ สอบถามขอดูรูปเพิ่มเติมได้เลยน้า",
+        logo: "https://placehold.co/200x200/fbcfe8/ffffff?text=Logo",
+        banner: "https://placehold.co/1122x495/fff0f3/f472b6?text=แบรนเนอร์+1122*495+(miori+shop)",
+        music: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+        applyConfigToUI();
+        renderCustomerReviews();
+    });
+
+    function switchPage(pageName) {
+        const homeView = document.getElementById('homePageView');
+        const creditView = document.getElementById('creditPageView');
+        if (pageName === 'credit') {
+            homeView.classList.add('hidden');
+            creditView.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            creditView.classList.add('hidden');
+            homeView.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+    function applyConfigToUI() {
+        document.getElementById('shopTitle').textContent = shopConfig.title;
+        document.getElementById('polaroidShopName').innerHTML = `<i class="fas fa-heart text-[9px] text-rose-300"></i> ${escapeHtml(shopConfig.title)}`;
+        document.getElementById('shopDesc').textContent = shopConfig.desc;
+        document.getElementById('logoImg').src = shopConfig.logo;
+        document.getElementById('mainBannerImg').src = shopConfig.banner;
+        document.getElementById('creditBannerImg').src = shopConfig.banner;
+
+        const audioElem = document.getElementById('bgMusic');
+        const sourceElem = audioElem.querySelector('source');
+        if (sourceElem.src !== shopConfig.music) {
+            sourceElem.src = shopConfig.music;
+            audioElem.load();
+        }
+
+        document.getElementById('adminShopTitle').value = shopConfig.title;
+        document.getElementById('adminShopDesc').value = shopConfig.desc;
+        document.getElementById('adminLogoUrl').value = shopConfig.logo;
+        document.getElementById('adminBannerUrl').value = shopConfig.banner;
+        document.getElementById('adminMusicUrl').value = shopConfig.music;
+    }
+
+    let isPlaying = false;
+    function toggleMusic() {
+        playCuteSound();
+        const audio = document.getElementById('bgMusic');
+        const icon = document.getElementById('musicIcon');
+        const status = document.getElementById('musicStatus');
+        
+        if (isPlaying) {
+            audio.pause();
+            icon.className = "fas fa-music text-xs";
+            status.textContent = "กดเพื่อเล่นเพลง";
+        } else {
+            audio.play().then(() => {
+                icon.className = "fas fa-pause text-xs";
+                status.textContent = "กำลังเล่นเพลง";
+            }).catch(err => {
+                console.log("Audio play blocked");
+            });
+        }
+        isPlaying = !isPlaying;
+    }
+
+    function toggleReviewForm() {
+        const form = document.getElementById('reviewFormContainer');
+        form.classList.toggle('hidden');
+    }
+
+    function renderCustomerReviews() {
+        const listContainer = document.getElementById('reviewsList');
+        listContainer.innerHTML = '';
+
+        const visibleReviews = reviewsData.filter(r => r.approved && !r.hidden);
+
+        if (visibleReviews.length > 0) {
+            const totalScore = visibleReviews.reduce((sum, r) => sum + Number(r.score), 0);
+            const avg = (totalScore / visibleReviews.length).toFixed(1);
+            document.getElementById('avgRatingScore').textContent = avg;
+            document.getElementById('totalReviewsCount').textContent = visibleReviews.length;
+
+            let starsHtml = '';
+            const fullStars = Math.floor(avg);
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) starsHtml += '<i class="fas fa-star text-amber-300 drop-shadow-xs"></i>';
+                else starsHtml += '<i class="far fa-star text-amber-200"></i>';
+            }
+            document.getElementById('starRatingIcons').innerHTML = starsHtml;
+        } else {
+            document.getElementById('avgRatingScore').textContent = "0.0";
+            document.getElementById('totalReviewsCount').textContent = "0";
+        }
+
+        if (visibleReviews.length === 0) {
+            listContainer.innerHTML = `
+                <div class="text-center py-8 text-gray-400 bg-white/60 rounded-3xl border border-rose-100">
+                    <i class="far fa-comments text-3xl mb-2 text-rose-300"></i>
+                    <p class="text-xs">ยังไม่มีความคิดเห็นในขณะนี้ เป็นคนแรกที่รีวิวสิคะ!</p>
+                </div>
+            `;
+            return;
+        }
+
+        visibleReviews.forEach(rev => {
+            let starsHtml = '';
+            for (let i = 0; i < 5; i++) {
+                if (i < rev.score) starsHtml += '<i class="fas fa-star text-amber-300 text-xs"></i>';
+                else starsHtml += '<i class="far fa-star text-amber-200 text-xs"></i>';
+            }
+
+            const item = document.createElement('div');
+            item.className = "bg-white/90 border-2 border-rose-100 p-4 rounded-3xl shadow-xs transition hover:shadow-sm hover:border-rose-200 relative group";
+            item.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-rose-200 to-pink-300 text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                            ${escapeHtml(rev.name.charAt(0))}
+                        </div>
+                        <span class="font-bold text-xs sm:text-sm text-gray-700 font-kanit">${escapeHtml(rev.name)}</span>
+                    </div>
+                    <div class="flex items-center space-x-0.5">${starsHtml}</div>
+                </div>
+                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-light pl-1">${escapeHtml(rev.comment)}</p>
+                <span class="block text-[10px] text-rose-300 text-right mt-2 font-mono">${rev.date}</span>
+            `;
+            listContainer.appendChild(item);
+        });
+    }
+
+    function submitCustomerReview(e) {
+        e.preventDefault();
+        const name = document.getElementById('revName').value.trim();
+        const score = parseInt(document.getElementById('revScore').value);
+        const comment = document.getElementById('revComment').value.trim();
+
+        if (!name || !comment) return;
+
+        const newRev = {
+            id: Date.now(),
+            name: name,
+            score: score,
+            comment: comment,
+            approved: true,
+            hidden: false,
+            date: new Date().toISOString().split('T')[0]
+        };
+
+        reviewsData.unshift(newRev);
+        saveReviewsToStorage();
+        renderCustomerReviews();
+
+        document.getElementById('revName').value = '';
+        document.getElementById('revComment').value = '';
+        toggleReviewForm();
+        showToast("ส่งรีวิวเรียบร้อยแล้ว ขอบพระคุณสำหรับความคิดเห็นค่ะ");
+    }
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    function toggleAdminPanel() {
+        const modal = document.getElementById('adminModal');
+        modal.classList.toggle('hidden');
+        if (!modal.classList.contains('hidden')) {
+            renderAdminReviewsList();
+        }
+    }
+
+    function switchAdminTab(tab) {
+        playCuteSound();
+        if (tab === 'config') {
+            document.getElementById('adminTabConfig').classList.remove('hidden');
+            document.getElementById('adminTabReviews').classList.add('hidden');
+            document.getElementById('tabConfigBtn').className = "pb-2 text-rose-400 border-b-2 border-rose-300 font-bold";
+            document.getElementById('tabReviewsBtn').className = "pb-2 text-gray-400 font-bold";
+        } else {
+            document.getElementById('adminTabConfig').classList.add('hidden');
+            document.getElementById('adminTabReviews').classList.remove('hidden');
+            document.getElementById('tabConfigBtn').className = "pb-2 text-gray-400 font-bold";
+            document.getElementById('tabReviewsBtn').className = "pb-2 text-rose-400 border-b-2 border-rose-300 font-bold";
+            renderAdminReviewsList();
+        }
+    }
+<!-- ... existing code ... baseline per-field save code ... -->
+    function renderAdminReviewsList() {
+        const container = document.getElementById('adminReviewsList');
+        container.innerHTML = '';
+
+        reviewsData.forEach(rev => {
+            const card = document.createElement('div');
+            card.className = `p-3 rounded-2xl border ${rev.hidden ? 'bg-gray-50 border-gray-200 opacity-60' : 'bg-rose-50/50 border-rose-100'} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs`;
+            card.innerHTML = `
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="font-bold text-gray-700">${escapeHtml(rev.name)}</span>
+                        <span class="text-amber-400 font-semibold flex items-center gap-1"><i class="fas fa-star text-xs"></i> ${rev.score}/5</span>
+                        <span class="text-[10px] text-gray-400">(${rev.date})</span>
+                        ${rev.hidden ? '<span class="bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded text-[10px]">ซ่อนอยู่</span>' : '<span class="bg-rose-100 text-rose-500 px-1.5 py-0.5 rounded text-[10px]">แสดงอยู่</span>'}
+                    </div>
+                    <p class="text-gray-500">${escapeHtml(rev.comment)}</p>
+                </div>
+                <div class="flex items-center space-x-2 shrink-0">
+                    <button onclick="toggleHideReview(${rev.id})" class="px-3 py-1 ${rev.hidden ? 'bg-emerald-400 hover:bg-emerald-500' : 'bg-amber-400 hover:bg-amber-500'} text-white rounded-xl font-bold transition flex items-center gap-1 shadow-xs">
+                        <i class="fas ${rev.hidden ? 'fa-eye' : 'fa-eye-slash'} text-[10px]"></i>
+                        ${rev.hidden ? 'แสดง' : 'ซ่อน'}
+                    </button>
+                    <button onclick="deleteReview(${rev.id})" class="px-3 py-1 bg-rose-400 hover:bg-rose-500 text-white rounded-xl font-bold transition flex items-center gap-1 shadow-xs">
+                        <i class="fas fa-trash text-[10px]"></i> ลบ
+                    </button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function toggleHideReview(id) {
+        playCuteSound();
+        const rev = reviewsData.find(r => r.id === id);
+        if (rev) {
+            rev.hidden = !rev.hidden;
+            saveReviewsToStorage();
+            renderAdminReviewsList();
+            renderCustomerReviews();
+        }
+    }
+
+    function deleteReview(id) {
+        playCuteSound();
+        reviewsData = reviewsData.filter(r => r.id !== id);
+        saveReviewsToStorage();
+        renderAdminReviewsList();
+        renderCustomerReviews();
+    }
+
+    function saveReviewsToStorage() {
+        localStorage.setItem('miori_reviews', JSON.stringify(reviewsData));
+    }
+
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = "fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-800/90 text-white text-xs sm:text-sm px-6 py-3 rounded-full shadow-lg z-50 flex items-center space-x-2 border border-rose-200 backdrop-blur-md transition-all";
+        toast.innerHTML = `<i class="fas fa-check-circle text-rose-300"></i> <span>${message}</span>`;
+        
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+    </script>
+</body>
+</html>
